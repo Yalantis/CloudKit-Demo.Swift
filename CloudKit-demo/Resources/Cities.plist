@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Dubai</key>
+	<dict>
+		<key>name</key>
+		<string>Dubai</string>
+		<key>text</key>
+		<string>Dubai is the most populous city and emirate in the United Arab Emirates (UAE), and the second largest emirate by territorial size after the capital, Abu Dhabi.</string>
+		<key>picture</key>
+		<string>Dubai</string>
+	</dict>
+	<key>London</key>
+	<dict>
+		<key>name</key>
+		<string>London</string>
+		<key>text</key>
+		<string>The City of London is a city and ceremonial county within London. It constituted most of London from its settlement by the Romans in the 1st century AD to the Middle Ages, but the conurbation has since grown far beyond the City&apos;s borders.[4] The City is now only a tiny part of the metropolis of London, though it remains a notable part of central London. It is one of two districts of London to hold city status; the other is the adjacent City of Westminster.</string>
+		<key>picture</key>
+		<string>London</string>
+	</dict>
+	<key>New York</key>
+	<dict>
+		<key>name</key>
+		<string>New York</string>
+		<key>text</key>
+		<string>New York – often called New York City or the City of New York to distinguish it from the State of New York, of which it is a part – is the most populous city in the United States and the center of the New York metropolitan area, the premier gateway for legal immigration to the United States[6][7][8] and one of the most populous urban agglomerations in the world.</string>
+		<key>picture</key>
+		<string>NewYork</string>
+	</dict>
+	<key>San Francisco</key>
+	<dict>
+		<key>name</key>
+		<string>San Francisco</string>
+		<key>text</key>
+		<string>San Francisco, officially the City and County of San Francisco, is the cultural, commercial and financial center of Northern California.</string>
+		<key>picture</key>
+		<string>SanFrancisco</string>
+	</dict>
+	<key>Singapore</key>
+	<dict>
+		<key>name</key>
+		<string>Singapore</string>
+		<key>text</key>
+		<string>Singapore, officially the Republic of Singapore, is a modern city-state and island country in Southeast Asia. It lies off the southern tip of the Malay Peninsula and is 137 kilometres (85 mi) north of the equator.</string>
+		<key>picture</key>
+		<string>Singapore</string>
+	</dict>
+</dict>
+</plist>
