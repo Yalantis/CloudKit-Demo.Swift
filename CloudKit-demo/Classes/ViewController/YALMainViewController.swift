@@ -12,10 +12,10 @@ private let kShowDetailSegueId = "showDetailSegueId"
 
 class YALMainViewController: YALBaseViewController, UITableViewDataSource, UITableViewDelegate {
     
-    @IBOutlet private var tableView: UITableView?
-    @IBOutlet private var indicatorView: UIActivityIndicatorView?
+    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var indicatorView: UIActivityIndicatorView!
     
-    private var cities: NSArray = []
+    private var cities = [YALCity]()
     
     // MARK: Life cycle
     override func viewDidLoad() {
@@ -28,61 +28,57 @@ class YALMainViewController: YALBaseViewController, UITableViewDataSource, UITab
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == kShowDetailSegueId {
             
-            let selectedRows: NSArray? = self.tableView?.indexPathsForSelectedRows()
-            let selectedIndexPath: NSIndexPath = selectedRows?.lastObject as NSIndexPath
+            let selectedRows: [NSIndexPath] = self.tableView.indexPathsForSelectedRows() as [NSIndexPath]
+            let selectedIndexPath = selectedRows.last
             
             let detailedVC = segue.destinationViewController as YALDetailedViewController
-            detailedVC.city = self.cities[selectedIndexPath.item] as YALCity
+            detailedVC.city = self.cities[selectedIndexPath!.row]
         }
     }
     
     // MARK: Private
     private func setupView() {
-        let cellNib: UINib = UINib(nibName: YALCityTableViewCell.nibName(), bundle: nil) as UINib
-        self.tableView?.registerNib(cellNib, forCellReuseIdentifier: YALCityTableViewCell.reuseIdentifier())
+        let cellNib = UINib(nibName: YALCityTableViewCell.nibName(), bundle: nil)
+        self.tableView.registerNib(cellNib, forCellReuseIdentifier: YALCityTableViewCell.reuseIdentifier())
     }
     
     private func updateData() {
         shouldAnimateIndicator(true)
-        YALCloudKitManager.fetchAllCitiesWithCompletionHandler { [weak self] (records, error) -> Void in
+        YALCloudKitManager.fetchAllCitiesWithCompletionHandler { [unowned self] (records, error) -> Void in
             
-            self?.shouldAnimateIndicator(false)
+            self.shouldAnimateIndicator(false)
             
             if error == nil {
                 if records.count == 0 {
-                    self?.presentMessage("Add City from the default list. Database is empty")
+                    self.presentMessage("Add City from the default list. Database is empty")
                     return
                 }
                 
-                self?.cities = records
-                self?.tableView?.reloadData()
+                self.cities = records
+                self.tableView.reloadData()
             } else {
-                self?.presentMessage(error.localizedDescription)
+                self.presentMessage(error.localizedDescription)
             }
         }
     }
     
     private func addCity(city: YALCity) {
-        var temp = NSMutableArray.init()
-        temp.addObjectsFromArray(self.cities)
-        temp.insertObject(city, atIndex: 0)
-        self.cities = temp
-        self.tableView?.reloadData()
+        self.cities.insert(city, atIndex: 0)
+        self.tableView.reloadData()
     }
     
     private func removeCity(city: YALCity) {
-        var temp = NSMutableArray.init()
-        temp.addObjectsFromArray(self.cities)
-        temp.removeObject(city)
-        self.cities = temp
-        self.tableView?.reloadData()
+        self.cities = self.cities.filter { (current: YALCity) -> Bool in
+            return current != city
+        }
+        self.tableView.reloadData()
     }
     
     private func shouldAnimateIndicator(animate: Bool) {
         if animate {
-            self.indicatorView?.startAnimating()
+            self.indicatorView.startAnimating()
         } else {
-            self.indicatorView?.stopAnimating()
+            self.indicatorView.stopAnimating()
         }
         
         self.tableView?.userInteractionEnabled = !animate
@@ -93,7 +89,7 @@ class YALMainViewController: YALBaseViewController, UITableViewDataSource, UITab
     @IBAction func unwindToMainViewController(segue:UIStoryboardSegue) {
         if segue.sourceViewController.isMemberOfClass(YALSelectCityViewController) {
             let selectCityVC = segue.sourceViewController as YALSelectCityViewController
-            addCity(selectCityVC.selectedCity)
+            addCity(selectCityVC.selectedCity!)
         } else if segue.sourceViewController.isMemberOfClass(YALDetailedViewController) {
             let detailedVC = segue.sourceViewController as YALDetailedViewController
             removeCity(detailedVC.city)
@@ -104,14 +100,14 @@ class YALMainViewController: YALBaseViewController, UITableViewDataSource, UITab
     
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.cities.count
+        return cities.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell: YALCityTableViewCell = tableView.dequeueReusableCellWithIdentifier(YALCityTableViewCell.reuseIdentifier()) as YALCityTableViewCell
         
-        let city = self.cities[indexPath.row] as YALCity
+        let city = self.cities[indexPath.row]
         cell.setCity(city)
         
         return cell
