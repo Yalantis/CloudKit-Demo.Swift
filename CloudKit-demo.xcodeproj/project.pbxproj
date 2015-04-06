@@ -12,7 +12,6 @@
 		AA79D2521AC2A12D00308B96 /* CloudKit_demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D2511AC2A12D00308B96 /* CloudKit_demoTests.swift */; };
 		AA79D2641AC2A1C400308B96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D25C1AC2A1C400308B96 /* AppDelegate.swift */; };
 		AA79D2651AC2A1C400308B96 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA79D2611AC2A1C400308B96 /* Images.xcassets */; };
-		AA79D2661AC2A1C400308B96 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = AA79D2621AC2A1C400308B96 /* LaunchScreen.xib */; };
 		AA79D2671AC2A1C400308B96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA79D2631AC2A1C400308B96 /* Main.storyboard */; };
 		AA79D26C1AC2A27600308B96 /* YALBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D26B1AC2A27600308B96 /* YALBaseViewController.swift */; };
 		AA79D26E1AC2A2B800308B96 /* YALMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D26D1AC2A2B800308B96 /* YALMainViewController.swift */; };
@@ -50,7 +49,6 @@
 		AA79D2511AC2A12D00308B96 /* CloudKit_demoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudKit_demoTests.swift; sourceTree = "<group>"; };
 		AA79D25C1AC2A1C400308B96 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA79D2611AC2A1C400308B96 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
-		AA79D2621AC2A1C400308B96 /* LaunchScreen.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LaunchScreen.xib; sourceTree = "<group>"; };
 		AA79D2631AC2A1C400308B96 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AA79D26B1AC2A27600308B96 /* YALBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALBaseViewController.swift; sourceTree = "<group>"; };
 		AA79D26D1AC2A2B800308B96 /* YALMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALMainViewController.swift; sourceTree = "<group>"; };
@@ -187,7 +185,6 @@
 				AA8B30201AC9F173001D4BDA /* CitiesImages */,
 				AAE54DBD1AC2D7F800622C50 /* Cities.plist */,
 				AA79D2611AC2A1C400308B96 /* Images.xcassets */,
-				AA79D2621AC2A1C400308B96 /* LaunchScreen.xib */,
 				AA79D2631AC2A1C400308B96 /* Main.storyboard */,
 			);
 			path = Resources;
@@ -319,7 +316,6 @@
 				AA8B30271AC9F173001D4BDA /* London.png in Resources */,
 				AA79D2671AC2A1C400308B96 /* Main.storyboard in Resources */,
 				AA8B302A1AC9F173001D4BDA /* Singapore.png in Resources */,
-				AA79D2661AC2A1C400308B96 /* LaunchScreen.xib in Resources */,
 				AAE54DBE1AC2D7F800622C50 /* Cities.plist in Resources */,
 				AA79D2651AC2A1C400308B96 /* Images.xcassets in Resources */,
 				AA8B30281AC9F173001D4BDA /* NewYork.png in Resources */,
@@ -454,6 +450,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "CloudKit-demo/CloudKit-demo.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -468,6 +465,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CODE_SIGN_ENTITLEMENTS = "CloudKit-demo/CloudKit-demo.entitlements";
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
