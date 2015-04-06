@@ -1,4 +1,4 @@
-# CloudKit Demo. Swift
+
 <p align="center" >
   <img src="https://github.com/Yalantis/CloudKit-Demo.Swift/blob/master/CloudKit-Swift.png" alt="CloudKit" title="CloudKit">
 </p>
