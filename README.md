@@ -64,7 +64,7 @@ CKContainer.defaultContainer().publicCloudDatabase.deleteRecordWithID(recordId, 
 
 [Yalantis](http://yalantis.com)
 
-Follow Yalantis on Twitter ([@Yalantis](https://twitter.com/yalantis)) [Facebook] (https://www.facebook.com/Yalantis?ref=ts&fref=ts)
+Follow Yalantis on Twitter ([@Yalantis](https://twitter.com/yalantis)) and [Facebook] (https://www.facebook.com/Yalantis?ref=ts&fref=ts)
 
 ## License
 
