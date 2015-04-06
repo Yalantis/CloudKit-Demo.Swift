@@ -15,15 +15,15 @@ let YALCityPicture = "picture"
 
 private let kCitiesSourcePlist = "Cities"
 
-class YALCity: NSObject {
+class YALCity: Equatable {
     
-    var name: NSString?
-    var text: NSString?
-    var image: UIImage?
-    var identifier: NSString?
+    var name: String
+    var text: String
+    var image: UIImage
+    var identifier: String
     
     // MARK: Class methods
-    class internal func defaultContent()->NSDictionary {
+    class internal func defaultContent() -> Dictionary<String, Dictionary<String, String>> {
         
         let path = NSBundle.mainBundle().pathForResource(kCitiesSourcePlist, ofType: "plist")
         let plistData = NSData(contentsOfFile: path!)
@@ -31,31 +31,25 @@ class YALCity: NSObject {
         
         var format: NSPropertyListFormat?
         var error: NSError?
-        var plistDic: AnyObject? = NSPropertyListSerialization.propertyListWithData(plistData!,
+        var plistDic = NSPropertyListSerialization.propertyListWithData(plistData!,
                             options:Int(NSPropertyListMutabilityOptions.MutableContainersAndLeaves.rawValue),
-                             format: nil, error: &error)
+                             format: nil, error: &error) as Dictionary<String, Dictionary<String, String>>
         
         assert(error == nil, "Can not read data from the plist")
 
-        return plistDic as NSDictionary
+        return plistDic
     }
     
-    // MARK: Lifecycle
-    override init() {
-        super.init()
-    }
-    
-    init(inputData:AnyObject) {
-        super.init()
-        self.mapObject(inputData as CKRecord)
-    }
-    
-    // MARK: Private
-    private func mapObject(record:CKRecord) {
-        self.name = record.valueForKey(YALCityName) as? String
-        self.text = record.valueForKey(YALCityText) as? String
-        var imageData = record.valueForKey(YALCityPicture) as? NSData
-        self.image = UIImage(data:imageData!)
+    init(record:CKRecord) {
+        self.name = record.valueForKey(YALCityName) as String
+        self.text = record.valueForKey(YALCityText) as String
+        var imageData = record.valueForKey(YALCityPicture) as NSData
+        self.image = UIImage(data:imageData)!
         self.identifier = record.recordID.recordName
     }
+    
+}
+
+func ==(lhs: YALCity, rhs: YALCity) -> Bool {
+    return lhs.identifier == rhs.identifier
 }

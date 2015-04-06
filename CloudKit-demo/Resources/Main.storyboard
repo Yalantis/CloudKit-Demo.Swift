@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14C109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Nw3-9E-pFZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6751" systemVersion="14A389" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="Nw3-9E-pFZ">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
     </dependencies>
@@ -212,7 +212,7 @@
                                                     <constraint firstAttribute="width" constant="80" id="Ic3-wo-NrD"/>
                                                     <constraint firstAttribute="height" constant="34" id="cgU-av-JhI"/>
                                                 </constraints>
-                                                <state key="normal" title="Revome">
+                                                <state key="normal" title="Remove">
                                                     <color key="titleColor" red="0.28235294119999998" green="0.62745098040000002" blue="0.86274509799999999" alpha="1" colorSpace="calibratedRGB"/>
                                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                 </state>

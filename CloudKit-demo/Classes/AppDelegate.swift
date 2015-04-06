@@ -8,6 +8,8 @@
 
 import UIKit
 
+//MARK: Prefix is deprecated
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

@@ -18,43 +18,37 @@ class YALCloudKitManager: NSObject {
     }
     
     // Retrieve existing records
-    class func fetchAllCitiesWithCompletionHandler(completion:(records: NSArray, error: NSError!) -> Void) {
+    class func fetchAllCitiesWithCompletionHandler(completion:(records: [YALCity], error: NSError!) -> Void) {
         var predicate = NSPredicate(value: true)
         
         var query = CKQuery(recordType: kRecordType, predicate: predicate)
         
         publicCloudDatabase().performQuery(query, inZoneWithID: nil) { (records, error) -> Void in
             
-            let fetchedRecords = records as NSArray
-            
-            var temp: NSMutableArray = []
-            fetchedRecords.enumerateObjectsUsingBlock({ (obj, index, stop) -> Void in
-                let city = YALCity.init(inputData:obj as AnyObject!)
-                temp.addObject(city)
+            let cities = (records as [CKRecord]).map({ (record: CKRecord) -> YALCity in
+                 return YALCity(record: record)
             })
-            
+                
             dispatch_async(dispatch_get_main_queue(),{
-                completion(records: temp, error: nil)
+                completion(records: cities, error: error)
             })
         }
     }
     
     // add a new record
-    class func createRecordWithCompletionHandler(recordDic: NSDictionary, completion:(record: AnyObject!, error: NSError!) -> Void) {
-        var record: CKRecord? = CKRecord.init(recordType: kRecordType)
+    class func createRecordWithCompletionHandler(recordDic: Dictionary<String, String>, completion:(record: CKRecord, error: NSError!) -> Void) {
+        var record = CKRecord(recordType: kRecordType)
         
-        for (index, element) in enumerate(recordDic.allKeys) {
-            let key: String = element as String
-            
-            if key == YALCityPicture {
+        for element in recordDic.keys.array {
+            if element == YALCityPicture {
                 
-                let path: NSString = NSBundle.mainBundle().pathForResource(recordDic[key] as? String, ofType: "png")!
-                let data: NSData = NSData.dataWithContentsOfMappedFile(path)! as NSData
+                let path = NSBundle.mainBundle().pathForResource(recordDic[element], ofType: "png")!
+                let data = NSData.dataWithContentsOfMappedFile(path)! as NSData
                 let image: UIImage = UIImage.init(data: data)!
                 
-                record?.setValue(data, forKey:key)
+                record.setValue(data, forKey:element)
             } else {
-                record?.setValue(recordDic[key], forKey: key)
+                record.setValue(recordDic[element], forKey: element)
             }
         }
         
@@ -66,13 +60,13 @@ class YALCloudKitManager: NSObject {
     }
     
     // updating the record by recordId
-    class func updateRecord(recordId: String, text: String, completion:(record: AnyObject!, error: NSError!) -> Void) {
-        let recordId = CKRecordID.init(recordName: recordId)
+    class func updateRecord(recordId: String, text: String, completion:(record: CKRecord, error: NSError!) -> Void) {
+        let recordId = CKRecordID(recordName: recordId)
         self.publicCloudDatabase().fetchRecordWithID(recordId, completionHandler: { (updatedRecord: CKRecord!, error: NSError!) -> Void in
             
             if error != nil {
                 dispatch_async(dispatch_get_main_queue(),{
-                    completion(record: nil, error: error)
+                    completion(record: updatedRecord, error: error)
                 })
                 return
             }
@@ -89,7 +83,7 @@ class YALCloudKitManager: NSObject {
     
     // remove the record
     class func removeRecord(recordId: String, completion:(recordId: String!, error: NSError!) -> Void) {
-        let recordId = CKRecordID.init(recordName: recordId)
+        let recordId = CKRecordID(recordName: recordId)
         self.publicCloudDatabase().deleteRecordWithID(recordId, completionHandler: { (deletedRecordId: CKRecordID!, error: NSError!) -> Void in
             dispatch_async(dispatch_get_main_queue(),{
                 completion (recordId: deletedRecordId.recordName, error: error)
