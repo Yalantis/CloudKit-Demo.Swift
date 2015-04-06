@@ -13,8 +13,8 @@ iOS 8.0
 ## How To Get Started
 
 - Set up Cloud/CloudKit at iOS Developer Portal.
-- Insert bundle identifier and choose a corresponding Team.
-- Select the Capabilities tab in the target editor, and then switch ON the iCloud.
+- Insert a bundle identifier and choose a corresponding Team.
+- Select Capabilities tab in the target editor, and then switch ON the iCloud.
 
 For more detailed information take a look at [our article](http://yalantis.com/blog/work-cloudkit/).
 
@@ -37,7 +37,7 @@ CKContainer.defaultContainer().publicCloudDatabase.saveRecord(record, completion
 })
 ```
 
-### Updating the record
+### Update the record
 ```swift
 let recordId = CKRecordID(recordName: "RecordType")
 CKContainer.defaultContainer().publicCloudDatabase.fetchRecordWithID(recordId, completionHandler: { (updatedRecord: CKRecord!, error: NSError!) -> Void in
@@ -64,7 +64,7 @@ CKContainer.defaultContainer().publicCloudDatabase.deleteRecordWithID(recordId, 
 
 [Yalantis](http://yalantis.com)
 
-Follow Yalantis on Twitter ([@Yalantis](https://twitter.com/yalantis))
+Follow Yalantis on Twitter ([@Yalantis](https://twitter.com/yalantis)) [Facebook (https://www.facebook.com/Yalantis?ref=ts&fref=ts)]
 
 ## License
 
