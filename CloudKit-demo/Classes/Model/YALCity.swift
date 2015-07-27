@@ -23,27 +23,28 @@ class YALCity: Equatable {
     var identifier: String
     
     // MARK: Class methods
-    class internal func defaultContent() -> Dictionary<String, Dictionary<String, String>> {
+    class internal func defaultContent() -> [String: [String: String]] {
         
         let path = NSBundle.mainBundle().pathForResource(kCitiesSourcePlist, ofType: "plist")
         let plistData = NSData(contentsOfFile: path!)
         assert(plistData != nil, "Source doesn't exist")
         
-        var format: NSPropertyListFormat?
-        var error: NSError?
-        var plistDic = NSPropertyListSerialization.propertyListWithData(plistData!,
-                            options:Int(NSPropertyListMutabilityOptions.MutableContainersAndLeaves.rawValue),
-                             format: nil, error: &error) as Dictionary<String, Dictionary<String, String>>
-        
-        assert(error == nil, "Can not read data from the plist")
+        var plistDic = [String: [String: String]]()
+        do {
+            plistDic = try NSPropertyListSerialization.propertyListWithData(plistData!,
+            options: .MutableContainersAndLeaves, format: UnsafeMutablePointer()) as! [String: [String: String]]
+        }
+        catch _ {
+            print("Can not read data from the plist")
+        }
 
         return plistDic
     }
     
-    init(record:CKRecord) {
-        self.name = record.valueForKey(YALCityName) as String
-        self.text = record.valueForKey(YALCityText) as String
-        var imageData = record.valueForKey(YALCityPicture) as NSData
+    init(record: CKRecord) {
+        self.name = record.valueForKey(YALCityName) as! String
+        self.text = record.valueForKey(YALCityText) as! String
+        let imageData = record.valueForKey(YALCityPicture) as! NSData
         self.image = UIImage(data:imageData)!
         self.identifier = record.recordID.recordName
     }

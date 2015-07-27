@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A75B1CA1B667AD900DB1628 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A75B1C91B667AD900DB1628 /* CloudKit.framework */; };
 		AA237A861ACA904500003B42 /* YALDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA237A851ACA904500003B42 /* YALDetailedViewController.swift */; };
-		AA23EB671AC422E3002FDDC0 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AA23EB661AC422E3002FDDC0 /* CloudKit.framework */; };
 		AA79D2521AC2A12D00308B96 /* CloudKit_demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D2511AC2A12D00308B96 /* CloudKit_demoTests.swift */; };
 		AA79D2641AC2A1C400308B96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D25C1AC2A1C400308B96 /* AppDelegate.swift */; };
 		AA79D2651AC2A1C400308B96 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA79D2611AC2A1C400308B96 /* Images.xcassets */; };
@@ -39,9 +39,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2A75B1C91B667AD900DB1628 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		AA237A851ACA904500003B42 /* YALDetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALDetailedViewController.swift; sourceTree = "<group>"; };
 		AA23EB651AC422D6002FDDC0 /* CloudKit-demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CloudKit-demo.entitlements"; sourceTree = "<group>"; };
-		AA23EB661AC422E3002FDDC0 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		AA79D2361AC2A12D00308B96 /* CloudKit-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CloudKit-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA79D23A1AC2A12D00308B96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AA79D24B1AC2A12D00308B96 /* CloudKit-demoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "CloudKit-demoTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -70,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA23EB671AC422E3002FDDC0 /* CloudKit.framework in Frameworks */,
+				2A75B1CA1B667AD900DB1628 /* CloudKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -87,6 +87,7 @@
 		AA79D22D1AC2A12D00308B96 = {
 			isa = PBXGroup;
 			children = (
+				2A75B1C91B667AD900DB1628 /* CloudKit.framework */,
 				AA79D2381AC2A12D00308B96 /* CloudKit-demo */,
 				AA79D24E1AC2A12D00308B96 /* CloudKit-demoTests */,
 				AA79D2371AC2A12D00308B96 /* Products */,
@@ -221,7 +222,6 @@
 		AAE54DB81AC2CBB000622C50 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				AA23EB661AC422E3002FDDC0 /* CloudKit.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -271,6 +271,7 @@
 			isa = PBXProject;
 			attributes = {
 				CLASSPREFIX = YAL;
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0620;
 				ORGANIZATIONNAME = Yalantis;
 				TargetAttributes = {

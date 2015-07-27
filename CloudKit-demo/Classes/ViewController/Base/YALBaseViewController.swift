@@ -11,7 +11,7 @@ import UIKit
 class YALBaseViewController: UIViewController {
 
     // MARK: Public
-    func presentMessage(message : NSString) {
+    func presentMessage(message: String) {
         
         let alert = UIAlertView()
         alert.title = "CloudKit"

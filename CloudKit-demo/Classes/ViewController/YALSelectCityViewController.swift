@@ -21,8 +21,8 @@ class YALSelectCityViewController: YALBaseViewController, UITableViewDataSource,
     
     // MARK: IBActions
     @IBAction private func saveButtonDidPress(button:UIButton) {
-        let selectedRows: NSArray? = self.tableView?.indexPathsForSelectedRows()
-        let selectedIndexPath: NSIndexPath = selectedRows?.lastObject as NSIndexPath
+        let selectedRows = self.tableView?.indexPathsForSelectedRows
+        let selectedIndexPath = (selectedRows?.last)!
         let recordDic = YALCity.defaultContent().values.array[selectedIndexPath.row]
         self.shouldAnimateIndicator(true)
         YALCloudKitManager.createRecordWithCompletionHandler(recordDic, completion: { [unowned self] (record: CKRecord, error) -> Void in
@@ -57,7 +57,7 @@ class YALSelectCityViewController: YALBaseViewController, UITableViewDataSource,
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(kCellReuseId) as UITableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(kCellReuseId)!
         
         let cityName = YALCity.defaultContent().keys.array[indexPath.row]
         cell.textLabel!.text = cityName
@@ -68,10 +68,10 @@ class YALSelectCityViewController: YALBaseViewController, UITableViewDataSource,
     // MARK: UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        if cell?.accessoryType == UITableViewCellAccessoryType.None {
-            cell?.accessoryType = UITableViewCellAccessoryType.Checkmark
+        if cell?.accessoryType == .None {
+            cell?.accessoryType = .Checkmark
         } else {
-            cell?.accessoryType = UITableViewCellAccessoryType.None
+            cell?.accessoryType = .None
         }
     }
     

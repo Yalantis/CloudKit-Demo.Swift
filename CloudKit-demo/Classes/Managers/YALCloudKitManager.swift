@@ -13,38 +13,35 @@ private let kRecordType: String = "Cities"
 
 class YALCloudKitManager: NSObject {
    
-    class func publicCloudDatabase()->CKDatabase {
+    class func publicCloudDatabase() -> CKDatabase {
         return CKContainer.defaultContainer().publicCloudDatabase
     }
     
     // Retrieve existing records
-    class func fetchAllCitiesWithCompletionHandler(completion:(records: [YALCity], error: NSError!) -> Void) {
-        var predicate = NSPredicate(value: true)
+    class func fetchAllCitiesWithCompletionHandler(completion: (records: [YALCity], error: NSError!) -> Void) {
+        let predicate = NSPredicate(value: true)
         
-        var query = CKQuery(recordType: kRecordType, predicate: predicate)
+        let query = CKQuery(recordType: kRecordType, predicate: predicate)
         
         publicCloudDatabase().performQuery(query, inZoneWithID: nil) { (records, error) -> Void in
             
-            let cities = (records as [CKRecord]).map({ (record: CKRecord) -> YALCity in
-                 return YALCity(record: record)
-            })
+            let cities = records!.map { YALCity(record: $0) }
                 
-            dispatch_async(dispatch_get_main_queue(),{
+            dispatch_async(dispatch_get_main_queue()) {
                 completion(records: cities, error: error)
-            })
+            }
         }
     }
     
     // add a new record
     class func createRecordWithCompletionHandler(recordDic: Dictionary<String, String>, completion:(record: CKRecord, error: NSError!) -> Void) {
-        var record = CKRecord(recordType: kRecordType)
+        let record = CKRecord(recordType: kRecordType)
         
         for element in recordDic.keys.array {
             if element == YALCityPicture {
                 
                 let path = NSBundle.mainBundle().pathForResource(recordDic[element], ofType: "png")!
-                let data = NSData.dataWithContentsOfMappedFile(path)! as NSData
-                let image: UIImage = UIImage.init(data: data)!
+                let data = try! NSData(contentsOfURL: NSURL(string: path)!, options: .DataReadingMappedIfSafe)
                 
                 record.setValue(data, forKey:element)
             } else {
@@ -52,30 +49,30 @@ class YALCloudKitManager: NSObject {
             }
         }
         
-        self.publicCloudDatabase().saveRecord(record, completionHandler: { (savedRecord: CKRecord!, error: NSError!) -> Void in
-            dispatch_async(dispatch_get_main_queue(),{
-                completion(record: savedRecord, error: error)
-            })
+        self.publicCloudDatabase().saveRecord(record, completionHandler: { (savedRecord, error) in
+            dispatch_async(dispatch_get_main_queue()) {
+                completion(record: savedRecord!, error: error)
+            }
         })
     }
     
     // updating the record by recordId
     class func updateRecord(recordId: String, text: String, completion:(record: CKRecord, error: NSError!) -> Void) {
         let recordId = CKRecordID(recordName: recordId)
-        self.publicCloudDatabase().fetchRecordWithID(recordId, completionHandler: { (updatedRecord: CKRecord!, error: NSError!) -> Void in
+        self.publicCloudDatabase().fetchRecordWithID(recordId, completionHandler: { (updatedRecord, error)  in
             
-            if error != nil {
-                dispatch_async(dispatch_get_main_queue(),{
-                    completion(record: updatedRecord, error: error)
-                })
+            if let error = error {
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(record: updatedRecord!, error: error)
+                }
                 return
             }
             
-            updatedRecord.setObject(text, forKey: YALCityText)
-            self.publicCloudDatabase().saveRecord(updatedRecord, completionHandler: { (savedRecord: CKRecord!, error: NSError!) -> Void in
-                dispatch_async(dispatch_get_main_queue(),{
-                    completion(record: savedRecord, error: error)
-                })
+            updatedRecord!.setObject(text, forKey: YALCityText)
+            self.publicCloudDatabase().saveRecord(updatedRecord!, completionHandler: { (savedRecord, error) in
+                dispatch_async(dispatch_get_main_queue()) {
+                    completion(record: savedRecord!, error: error!)
+                }
             })
             
         })
@@ -84,10 +81,10 @@ class YALCloudKitManager: NSObject {
     // remove the record
     class func removeRecord(recordId: String, completion:(recordId: String!, error: NSError!) -> Void) {
         let recordId = CKRecordID(recordName: recordId)
-        self.publicCloudDatabase().deleteRecordWithID(recordId, completionHandler: { (deletedRecordId: CKRecordID!, error: NSError!) -> Void in
-            dispatch_async(dispatch_get_main_queue(),{
-                completion (recordId: deletedRecordId.recordName, error: error)
-            })
+        self.publicCloudDatabase().deleteRecordWithID(recordId, completionHandler: { (deletedRecordId, error) in
+            dispatch_async(dispatch_get_main_queue()) {
+                completion (recordId: deletedRecordId!.recordName, error: error)
+            }
         })
     }
     
