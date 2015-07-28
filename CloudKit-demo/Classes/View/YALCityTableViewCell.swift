@@ -16,11 +16,11 @@ class YALCityTableViewCell: UITableViewCell {
     @IBOutlet var pictureImageView: UIImageView?
     @IBOutlet var nameLable: UILabel?
     
-    class func reuseIdentifier()->NSString {
+    class func reuseIdentifier() -> String {
         return kCellReuseId
     }
     
-    class func nibName()->NSString {
+    class func nibName() -> String {
         return kCityTableViewCell
     }
     
