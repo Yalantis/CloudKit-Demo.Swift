@@ -19,7 +19,7 @@ class YALCity: Equatable {
     
     var name: String
     var text: String
-    var image: UIImage
+    var image: UIImage?
     var identifier: String
     
     // MARK: Class methods
@@ -44,8 +44,9 @@ class YALCity: Equatable {
     init(record: CKRecord) {
         self.name = record.valueForKey(YALCityName) as! String
         self.text = record.valueForKey(YALCityText) as! String
-        let imageData = record.valueForKey(YALCityPicture) as! NSData
-        self.image = UIImage(data:imageData)!
+        if let imageData = record.valueForKey(YALCityPicture) as? NSData {
+            self.image = UIImage(data:imageData)
+        }
         self.identifier = record.recordID.recordName
     }
     
