@@ -19,7 +19,7 @@ iOS 8.0
 - Insert a bundle identifier and choose a corresponding Team.
 - Select Capabilities tab in the target editor, and then switch ON the iCloud.
 
-For more detailed information take a look at [our article](http://yalantis.com/blog/work-cloudkit/).
+For more detailed information take a look at [our article](https://yalantis.com/blog/work-cloudkit/?utm_source=github).
 
 ## Usage
 
