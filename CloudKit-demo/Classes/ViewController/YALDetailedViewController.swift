@@ -74,7 +74,7 @@ class YALDetailedViewController: YALBaseViewController {
                 return
             }
             
-            self.city.text = record.valueForKey(YALCityText) as String
+            self.city.text = record.valueForKey(YALCityText) as! String
             self.presentMessage(kUpdatedMessage)
         }
     }

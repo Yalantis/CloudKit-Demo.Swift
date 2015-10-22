@@ -28,10 +28,10 @@ class YALMainViewController: YALBaseViewController, UITableViewDataSource, UITab
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == kShowDetailSegueId {
             
-            let selectedRows: [NSIndexPath] = self.tableView.indexPathsForSelectedRows() as [NSIndexPath]
+            let selectedRows: [NSIndexPath] = self.tableView.indexPathsForSelectedRows!
             let selectedIndexPath = selectedRows.last
             
-            let detailedVC = segue.destinationViewController as YALDetailedViewController
+            let detailedVC = segue.destinationViewController as! YALDetailedViewController
             detailedVC.city = self.cities[selectedIndexPath!.row]
         }
     }
@@ -87,12 +87,10 @@ class YALMainViewController: YALBaseViewController, UITableViewDataSource, UITab
     
     // MARK: IBActions
     @IBAction func unwindToMainViewController(segue:UIStoryboardSegue) {
-        if segue.sourceViewController.isMemberOfClass(YALSelectCityViewController) {
-            let selectCityVC = segue.sourceViewController as YALSelectCityViewController
-            addCity(selectCityVC.selectedCity!)
-        } else if segue.sourceViewController.isMemberOfClass(YALDetailedViewController) {
-            let detailedVC = segue.sourceViewController as YALDetailedViewController
-            removeCity(detailedVC.city)
+        if let source = segue.sourceViewController as? YALSelectCityViewController {
+            addCity(source.selectedCity!)
+        } else if let source = segue.sourceViewController as? YALDetailedViewController {
+            removeCity(source.city)
         }
         
         self.navigationController?.popToViewController(self, animated: true)
@@ -105,7 +103,7 @@ class YALMainViewController: YALBaseViewController, UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell: YALCityTableViewCell = tableView.dequeueReusableCellWithIdentifier(YALCityTableViewCell.reuseIdentifier()) as YALCityTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(YALCityTableViewCell.reuseIdentifier()) as! YALCityTableViewCell
         
         let city = self.cities[indexPath.row]
         cell.setCity(city)
