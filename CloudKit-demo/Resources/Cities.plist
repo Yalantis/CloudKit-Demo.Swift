@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-<dict>
-	<key>Dubai</key>
+<array>
 	<dict>
 		<key>name</key>
 		<string>Dubai</string>
@@ -11,7 +10,6 @@
 		<key>picture</key>
 		<string>Dubai</string>
 	</dict>
-	<key>London</key>
 	<dict>
 		<key>name</key>
 		<string>London</string>
@@ -20,7 +18,6 @@
 		<key>picture</key>
 		<string>London</string>
 	</dict>
-	<key>New York</key>
 	<dict>
 		<key>name</key>
 		<string>New York</string>
@@ -29,7 +26,6 @@
 		<key>picture</key>
 		<string>NewYork</string>
 	</dict>
-	<key>San Francisco</key>
 	<dict>
 		<key>name</key>
 		<string>San Francisco</string>
@@ -38,7 +34,6 @@
 		<key>picture</key>
 		<string>SanFrancisco</string>
 	</dict>
-	<key>Singapore</key>
 	<dict>
 		<key>name</key>
 		<string>Singapore</string>
@@ -47,5 +42,5 @@
 		<key>picture</key>
 		<string>Singapore</string>
 	</dict>
-</dict>
+</array>
 </plist>

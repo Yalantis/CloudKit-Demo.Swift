@@ -9,81 +9,88 @@
 import UIKit
 import CloudKit
 
-private let kRecordType: String = "Cities"
+private let kRecordType = "Cities"
 
-class YALCloudKitManager: NSObject {
-   
-    class func publicCloudDatabase() -> CKDatabase {
+final class YALCloudKitManager {
+    
+    private init() {
+        ///forbide to create instance of helper class
+    }
+    
+    static func publicCloudDatabase() -> CKDatabase {
         return CKContainer.defaultContainer().publicCloudDatabase
     }
     
-    // Retrieve existing records
-    class func fetchAllCitiesWithCompletionHandler(completion: (records: [YALCity], error: NSError!) -> Void) {
+    //MARK: Retrieve existing records
+    static func fetchAllCitiesWithCompletionHandler(completion: (records: [YALCity]!, error: NSError?) -> Void) {
         let predicate = NSPredicate(value: true)
         
         let query = CKQuery(recordType: kRecordType, predicate: predicate)
         
         publicCloudDatabase().performQuery(query, inZoneWithID: nil) { (records, error) -> Void in
+            let cities = records?.map { YALCity(record: $0) }
             
-            let cities = records!.map { YALCity(record: $0) }
-                
             dispatch_async(dispatch_get_main_queue()) {
                 completion(records: cities, error: error)
             }
         }
     }
     
-    // add a new record
-    class func createRecordWithCompletionHandler(recordDic: Dictionary<String, String>, completion:(record: CKRecord, error: NSError!) -> Void) {
+    //MARK: add a new record
+    static func createRecordWithCompletionHandler(recordDic: [String: String], completion: (CKRecord!, NSError?) -> Void) {
         let record = CKRecord(recordType: kRecordType)
         
         for (key, value) in recordDic {
             if key == YALCityPicture {
+                var data: NSData?
+                if let path = NSBundle.mainBundle().pathForResource(value, ofType: "jpg") {
+                    do {
+                        data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: .DataReadingMappedIfSafe)
+                    } catch let error {
+                        print(error)
+                    }
+                }
                 
-                let path = NSBundle.mainBundle().pathForResource(value, ofType: "png")!
-                let data = try! NSData(contentsOfURL: NSURL(string: path)!, options: .DataReadingMappedIfSafe)
-                
-                record.setValue(data, forKey:key)
+                record.setValue(data, forKey: key)
             } else {
                 record.setValue(value, forKey: key)
             }
         }
         
-        self.publicCloudDatabase().saveRecord(record, completionHandler: { (savedRecord, error) in
+        publicCloudDatabase().saveRecord(record, completionHandler: { (savedRecord, error) in
             dispatch_async(dispatch_get_main_queue()) {
-                completion(record: savedRecord!, error: error)
+                completion(record, error)
             }
         })
     }
     
-    // updating the record by recordId
-    class func updateRecord(recordId: String, text: String, completion:(record: CKRecord, error: NSError!) -> Void) {
+    //MARK: updating the record by recordId
+    static func updateRecord(recordId: String, text: String, completion: (CKRecord!, NSError?) -> Void) {
         let recordId = CKRecordID(recordName: recordId)
-        self.publicCloudDatabase().fetchRecordWithID(recordId, completionHandler: { (updatedRecord, error)  in
+        publicCloudDatabase().fetchRecordWithID(recordId, completionHandler: { (updatedRecord, error) in
             
-            if let error = error {
+            guard let record = updatedRecord else  {
                 dispatch_async(dispatch_get_main_queue()) {
-                    completion(record: updatedRecord!, error: error)
+                    completion(updatedRecord, error)
                 }
                 return
             }
             
-            updatedRecord!.setObject(text, forKey: YALCityText)
-            self.publicCloudDatabase().saveRecord(updatedRecord!, completionHandler: { (savedRecord, error) in
+            self.publicCloudDatabase().saveRecord(record, completionHandler: { (savedRecord, error) in
                 dispatch_async(dispatch_get_main_queue()) {
-                    completion(record: savedRecord!, error: error!)
+                    completion(savedRecord, error)
                 }
             })
             
         })
     }
     
-    // remove the record
-    class func removeRecord(recordId: String, completion:(recordId: String!, error: NSError!) -> Void) {
+    //MARK: remove the record
+    static func removeRecord(recordId: String, completion: (String!, NSError?) -> Void) {
         let recordId = CKRecordID(recordName: recordId)
-        self.publicCloudDatabase().deleteRecordWithID(recordId, completionHandler: { (deletedRecordId, error) in
+        publicCloudDatabase().deleteRecordWithID(recordId, completionHandler: { (deletedRecordId, error) in
             dispatch_async(dispatch_get_main_queue()) {
-                completion (recordId: deletedRecordId!.recordName, error: error)
+                completion (deletedRecordId?.recordName, error)
             }
         })
     }

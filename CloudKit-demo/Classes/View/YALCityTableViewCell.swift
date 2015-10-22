@@ -13,8 +13,8 @@ private let kCityTableViewCell = "YALCityTableViewCell"
 
 class YALCityTableViewCell: UITableViewCell {
 
-    @IBOutlet var pictureImageView: UIImageView?
-    @IBOutlet var nameLable: UILabel?
+    @IBOutlet var pictureImageView: UIImageView!
+    @IBOutlet var nameLable: UILabel!
     
     class func reuseIdentifier() -> String {
         return kCellReuseId
@@ -25,13 +25,12 @@ class YALCityTableViewCell: UITableViewCell {
     }
     
     func setCity(city: YALCity) {
-        self.nameLable?.text = city.name
-        self.pictureImageView?.alpha = 0.0
-        self.pictureImageView?.image = city.image
+        nameLable.text = city.name
+        pictureImageView.alpha = 0.0
+        pictureImageView.image = city.image
         
-        UIView.animateWithDuration(0.3, animations: { () -> Void in
-            self.pictureImageView?.alpha = 1.0
-            return
+        UIView.animateWithDuration(0.3, animations: {
+            self.pictureImageView.alpha = 1.0
         })
     }
 }

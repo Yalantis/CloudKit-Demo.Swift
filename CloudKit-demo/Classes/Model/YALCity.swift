@@ -17,28 +17,30 @@ private let kCitiesSourcePlist = "Cities"
 
 class YALCity: Equatable {
     
+    static var cities: [[String: String]]!
+    
     var name: String
     var text: String
     var image: UIImage?
     var identifier: String
     
     // MARK: Class methods
-    class internal func defaultContent() -> [String: [String: String]] {
-        
-        let path = NSBundle.mainBundle().pathForResource(kCitiesSourcePlist, ofType: "plist")
-        let plistData = NSData(contentsOfFile: path!)
-        assert(plistData != nil, "Source doesn't exist")
-        
-        var plistDic = [String: [String: String]]()
-        do {
-            plistDic = try NSPropertyListSerialization.propertyListWithData(plistData!,
-            options: .MutableContainersAndLeaves, format: UnsafeMutablePointer()) as! [String: [String: String]]
-        }
-        catch _ {
-            print("Can not read data from the plist")
+    static func defaultContent() -> [[String: String]] {
+        if cities == nil {
+            let path = NSBundle.mainBundle().pathForResource(kCitiesSourcePlist, ofType: "plist")
+            let plistData = NSData(contentsOfFile: path!)
+            assert(plistData != nil, "Source doesn't exist")
+            
+            do {
+                cities = try NSPropertyListSerialization.propertyListWithData(plistData!,
+                    options: .MutableContainersAndLeaves, format: UnsafeMutablePointer()) as! [[String: String]]
+            }
+            catch _ {
+                print("Cannot read data from the plist")
+            }
         }
 
-        return plistDic
+        return cities
     }
     
     init(record: CKRecord) {

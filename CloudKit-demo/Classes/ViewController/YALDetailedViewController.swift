@@ -12,7 +12,7 @@ private let kUpdatedMessage = "City has been updated successfully"
 private let kUnwindSegue = "unwindToMainId"
 
 class YALDetailedViewController: YALBaseViewController {
-
+    
     var city: YALCity!
     
     @IBOutlet private var scrollView: UIScrollView!
@@ -24,7 +24,7 @@ class YALDetailedViewController: YALBaseViewController {
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupView()
         NSNotificationCenter.defaultCenter().addObserver(self, selector:Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
     }
@@ -69,28 +69,26 @@ class YALDetailedViewController: YALBaseViewController {
         YALCloudKitManager.updateRecord(identifier, text: updatedText) { [unowned self] (record, error) -> Void in
             
             self.shouldAnimateIndicator(false)
-            if error != nil {
+            if let error = error {
                 self.presentMessage(error.localizedDescription)
-                return
+            } else {
+                self.city.text = record.valueForKey(YALCityText) as! String
+                self.presentMessage(kUpdatedMessage)
             }
-            
-            self.city.text = record.valueForKey(YALCityText) as! String
-            self.presentMessage(kUpdatedMessage)
         }
     }
     
-  @IBAction private func removeButtonDidPress(button:UIButton) {
+    @IBAction private func removeButtonDidPress(button:UIButton) {
         self.shouldAnimateIndicator(true)
         YALCloudKitManager.removeRecord(self.city.identifier, completion: { [unowned self] (recordId, error) -> Void in
             
             self.shouldAnimateIndicator(false)
             
-            if error != nil {
+            if let error = error {
                 self.presentMessage(error.localizedDescription)
-                return
+            } else {
+                self.performSegueWithIdentifier(kUnwindSegue, sender: self)
             }
-            
-            self.performSegueWithIdentifier(kUnwindSegue, sender: self)
-        })
+            })
     }
 }

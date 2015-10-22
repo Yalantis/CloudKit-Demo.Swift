@@ -8,6 +8,11 @@
 
 /* Begin PBXBuildFile section */
 		2A75B1CA1B667AD900DB1628 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2A75B1C91B667AD900DB1628 /* CloudKit.framework */; };
+		928E33761BD9410D005958E7 /* Dubai.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 928E33711BD9410D005958E7 /* Dubai.jpg */; };
+		928E33771BD9410D005958E7 /* London.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 928E33721BD9410D005958E7 /* London.jpg */; };
+		928E33781BD9410D005958E7 /* NewYork.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 928E33731BD9410D005958E7 /* NewYork.jpg */; };
+		928E33791BD9410D005958E7 /* SanFrancisco.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 928E33741BD9410D005958E7 /* SanFrancisco.jpg */; };
+		928E337A1BD9410D005958E7 /* Singapore.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 928E33751BD9410D005958E7 /* Singapore.jpg */; };
 		AA237A861ACA904500003B42 /* YALDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA237A851ACA904500003B42 /* YALDetailedViewController.swift */; };
 		AA79D2521AC2A12D00308B96 /* CloudKit_demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D2511AC2A12D00308B96 /* CloudKit_demoTests.swift */; };
 		AA79D2641AC2A1C400308B96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D25C1AC2A1C400308B96 /* AppDelegate.swift */; };
@@ -16,11 +21,6 @@
 		AA79D26C1AC2A27600308B96 /* YALBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D26B1AC2A27600308B96 /* YALBaseViewController.swift */; };
 		AA79D26E1AC2A2B800308B96 /* YALMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D26D1AC2A2B800308B96 /* YALMainViewController.swift */; };
 		AA8B301F1AC9D30D001D4BDA /* YALSelectCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B301E1AC9D30D001D4BDA /* YALSelectCityViewController.swift */; };
-		AA8B30261AC9F173001D4BDA /* Dubai.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8B30211AC9F173001D4BDA /* Dubai.png */; };
-		AA8B30271AC9F173001D4BDA /* London.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8B30221AC9F173001D4BDA /* London.png */; };
-		AA8B30281AC9F173001D4BDA /* NewYork.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8B30231AC9F173001D4BDA /* NewYork.png */; };
-		AA8B30291AC9F173001D4BDA /* SanFrancisco.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8B30241AC9F173001D4BDA /* SanFrancisco.png */; };
-		AA8B302A1AC9F173001D4BDA /* Singapore.png in Resources */ = {isa = PBXBuildFile; fileRef = AA8B30251AC9F173001D4BDA /* Singapore.png */; };
 		AAE54DAA1AC2AC4900622C50 /* YALCityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE54DA81AC2AC4900622C50 /* YALCityTableViewCell.swift */; };
 		AAE54DAB1AC2AC4900622C50 /* YALCityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE54DA91AC2AC4900622C50 /* YALCityTableViewCell.xib */; };
 		AAE54DB51AC2CB8A00622C50 /* YALCloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE54DB41AC2CB8A00622C50 /* YALCloudKitManager.swift */; };
@@ -40,6 +40,11 @@
 
 /* Begin PBXFileReference section */
 		2A75B1C91B667AD900DB1628 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
+		928E33711BD9410D005958E7 /* Dubai.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Dubai.jpg; sourceTree = "<group>"; };
+		928E33721BD9410D005958E7 /* London.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = London.jpg; sourceTree = "<group>"; };
+		928E33731BD9410D005958E7 /* NewYork.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NewYork.jpg; sourceTree = "<group>"; };
+		928E33741BD9410D005958E7 /* SanFrancisco.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SanFrancisco.jpg; sourceTree = "<group>"; };
+		928E33751BD9410D005958E7 /* Singapore.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Singapore.jpg; sourceTree = "<group>"; };
 		AA237A851ACA904500003B42 /* YALDetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALDetailedViewController.swift; sourceTree = "<group>"; };
 		AA23EB651AC422D6002FDDC0 /* CloudKit-demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CloudKit-demo.entitlements"; sourceTree = "<group>"; };
 		AA79D2361AC2A12D00308B96 /* CloudKit-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CloudKit-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,11 +58,6 @@
 		AA79D26B1AC2A27600308B96 /* YALBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALBaseViewController.swift; sourceTree = "<group>"; };
 		AA79D26D1AC2A2B800308B96 /* YALMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALMainViewController.swift; sourceTree = "<group>"; };
 		AA8B301E1AC9D30D001D4BDA /* YALSelectCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALSelectCityViewController.swift; sourceTree = "<group>"; };
-		AA8B30211AC9F173001D4BDA /* Dubai.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Dubai.png; sourceTree = "<group>"; };
-		AA8B30221AC9F173001D4BDA /* London.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = London.png; sourceTree = "<group>"; };
-		AA8B30231AC9F173001D4BDA /* NewYork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = NewYork.png; sourceTree = "<group>"; };
-		AA8B30241AC9F173001D4BDA /* SanFrancisco.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SanFrancisco.png; sourceTree = "<group>"; };
-		AA8B30251AC9F173001D4BDA /* Singapore.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Singapore.png; sourceTree = "<group>"; };
 		AAE54DA81AC2AC4900622C50 /* YALCityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALCityTableViewCell.swift; sourceTree = "<group>"; };
 		AAE54DA91AC2AC4900622C50 /* YALCityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YALCityTableViewCell.xib; sourceTree = "<group>"; };
 		AAE54DB41AC2CB8A00622C50 /* YALCloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALCloudKitManager.swift; sourceTree = "<group>"; };
@@ -184,8 +184,8 @@
 			isa = PBXGroup;
 			children = (
 				AA8B30201AC9F173001D4BDA /* CitiesImages */,
-				AAE54DBD1AC2D7F800622C50 /* Cities.plist */,
 				AA79D2611AC2A1C400308B96 /* Images.xcassets */,
+				AAE54DBD1AC2D7F800622C50 /* Cities.plist */,
 				AA79D2631AC2A1C400308B96 /* Main.storyboard */,
 			);
 			path = Resources;
@@ -202,11 +202,11 @@
 		AA8B30201AC9F173001D4BDA /* CitiesImages */ = {
 			isa = PBXGroup;
 			children = (
-				AA8B30211AC9F173001D4BDA /* Dubai.png */,
-				AA8B30221AC9F173001D4BDA /* London.png */,
-				AA8B30231AC9F173001D4BDA /* NewYork.png */,
-				AA8B30241AC9F173001D4BDA /* SanFrancisco.png */,
-				AA8B30251AC9F173001D4BDA /* Singapore.png */,
+				928E33711BD9410D005958E7 /* Dubai.jpg */,
+				928E33721BD9410D005958E7 /* London.jpg */,
+				928E33731BD9410D005958E7 /* NewYork.jpg */,
+				928E33741BD9410D005958E7 /* SanFrancisco.jpg */,
+				928E33751BD9410D005958E7 /* Singapore.jpg */,
 			);
 			path = CitiesImages;
 			sourceTree = "<group>";
@@ -314,15 +314,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA8B30271AC9F173001D4BDA /* London.png in Resources */,
+				928E33771BD9410D005958E7 /* London.jpg in Resources */,
+				928E33781BD9410D005958E7 /* NewYork.jpg in Resources */,
+				928E337A1BD9410D005958E7 /* Singapore.jpg in Resources */,
 				AA79D2671AC2A1C400308B96 /* Main.storyboard in Resources */,
-				AA8B302A1AC9F173001D4BDA /* Singapore.png in Resources */,
 				AAE54DBE1AC2D7F800622C50 /* Cities.plist in Resources */,
 				AA79D2651AC2A1C400308B96 /* Images.xcassets in Resources */,
-				AA8B30281AC9F173001D4BDA /* NewYork.png in Resources */,
+				928E33761BD9410D005958E7 /* Dubai.jpg in Resources */,
+				928E33791BD9410D005958E7 /* SanFrancisco.jpg in Resources */,
 				AAE54DAB1AC2AC4900622C50 /* YALCityTableViewCell.xib in Resources */,
-				AA8B30261AC9F173001D4BDA /* Dubai.png in Resources */,
-				AA8B30291AC9F173001D4BDA /* SanFrancisco.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -44,34 +44,32 @@ class YALMainViewController: YALBaseViewController, UITableViewDataSource, UITab
     
     private func updateData() {
         shouldAnimateIndicator(true)
-        YALCloudKitManager.fetchAllCitiesWithCompletionHandler { [unowned self] (records, error) -> Void in
-            
+        YALCloudKitManager.fetchAllCitiesWithCompletionHandler { (records, error) -> Void in
             self.shouldAnimateIndicator(false)
             
-            if error == nil {
-                if records.count == 0 {
-                    self.presentMessage("Add City from the default list. Database is empty")
-                    return
-                }
-                
-                self.cities = records
-                self.tableView.reloadData()
+            if let error = error {
+                 self.presentMessage(error.localizedDescription)
             } else {
-                self.presentMessage(error.localizedDescription)
+                if records.isEmpty {
+                   self.presentMessage("Add City from the default list. Database is empty")
+                } else {
+                    self.cities = records
+                    self.tableView.reloadData()
+                }
             }
         }
     }
     
     private func addCity(city: YALCity) {
-        self.cities.insert(city, atIndex: 0)
-        self.tableView.reloadData()
+        cities.insert(city, atIndex: 0)
+        tableView.reloadData()
     }
     
     private func removeCity(city: YALCity) {
-        self.cities = self.cities.filter { (current: YALCity) -> Bool in
+        cities = self.cities.filter { (current: YALCity) -> Bool in
             return current != city
         }
-        self.tableView.reloadData()
+        tableView.reloadData()
     }
     
     private func shouldAnimateIndicator(animate: Bool) {
@@ -86,9 +84,9 @@ class YALMainViewController: YALBaseViewController, UITableViewDataSource, UITab
     }
     
     // MARK: IBActions
-    @IBAction func unwindToMainViewController(segue:UIStoryboardSegue) {
+    @IBAction func unwindToMainViewController(segue: UIStoryboardSegue) {
         if let source = segue.sourceViewController as? YALSelectCityViewController {
-            addCity(source.selectedCity!)
+            addCity(source.selectedCity)
         } else if let source = segue.sourceViewController as? YALDetailedViewController {
             removeCity(source.city)
         }
