@@ -37,15 +37,15 @@ class YALCloudKitManager: NSObject {
     class func createRecordWithCompletionHandler(recordDic: Dictionary<String, String>, completion:(record: CKRecord, error: NSError!) -> Void) {
         let record = CKRecord(recordType: kRecordType)
         
-        for element in recordDic.keys.array {
-            if element == YALCityPicture {
+        for (key, value) in recordDic {
+            if key == YALCityPicture {
                 
-                let path = NSBundle.mainBundle().pathForResource(recordDic[element], ofType: "png")!
+                let path = NSBundle.mainBundle().pathForResource(value, ofType: "png")!
                 let data = try! NSData(contentsOfURL: NSURL(string: path)!, options: .DataReadingMappedIfSafe)
                 
-                record.setValue(data, forKey:element)
+                record.setValue(data, forKey:key)
             } else {
-                record.setValue(recordDic[element], forKey: element)
+                record.setValue(value, forKey: key)
             }
         }
         

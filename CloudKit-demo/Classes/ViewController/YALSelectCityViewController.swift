@@ -23,12 +23,12 @@ class YALSelectCityViewController: YALBaseViewController, UITableViewDataSource,
     @IBAction private func saveButtonDidPress(button:UIButton) {
         let selectedRows = self.tableView?.indexPathsForSelectedRows
         let selectedIndexPath = (selectedRows?.last)!
-        let recordDic = YALCity.defaultContent().values.array[selectedIndexPath.row]
+        let recordDic = Array(YALCity.defaultContent().values)[selectedIndexPath.row]
         self.shouldAnimateIndicator(true)
         YALCloudKitManager.createRecordWithCompletionHandler(recordDic, completion: { [unowned self] (record: CKRecord, error) -> Void in
             
             self.shouldAnimateIndicator(false)
-            if error != nil {
+            if let error = error {
                 self.presentMessage(error.localizedDescription)
                 return
             }
@@ -52,14 +52,14 @@ class YALSelectCityViewController: YALBaseViewController, UITableViewDataSource,
     
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return YALCity.defaultContent().keys.array.count
+        return YALCity.defaultContent().count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier(kCellReuseId)!
         
-        let cityName = YALCity.defaultContent().keys.array[indexPath.row]
+        let cityName = Array(YALCity.defaultContent().keys)[indexPath.row]
         cell.textLabel!.text = cityName
         
         return cell
