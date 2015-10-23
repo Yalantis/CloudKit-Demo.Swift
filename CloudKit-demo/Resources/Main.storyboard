@@ -48,6 +48,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Cities" id="0Dg-8z-ZuK">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="vJT-AH-5XV">
+                            <connections>
+                                <action selector="reloadCities" destination="vXZ-lx-hvc" id="l2K-dN-TrM"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rnv-Bf-buL">
                             <connections>
                                 <segue destination="d60-Hc-kgs" kind="show" id="wQ4-ph-Vg6"/>
@@ -206,7 +211,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ju-Lj-P6b">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ju-Lj-P6b">
                                                 <rect key="frame" x="16" y="326" width="288" height="222"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

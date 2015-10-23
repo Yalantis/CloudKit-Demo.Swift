@@ -23,9 +23,7 @@ class MainViewController: BaseViewController, UITableViewDataSource, UITableView
         
         setupView()
         
-        CloudKitManager.checkLoginStatus {
-            self.updateData()
-        }
+        reloadCities()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -44,6 +42,14 @@ class MainViewController: BaseViewController, UITableViewDataSource, UITableView
         let cellNib = UINib(nibName: CityTableViewCell.nibName(), bundle: nil)
         tableView.registerNib(cellNib, forCellReuseIdentifier: CityTableViewCell.reuseIdentifier())
         tableView.tableFooterView = UIView()
+    }
+    
+    @IBAction func reloadCities() {
+        shouldAnimateIndicator(true)
+        CloudKitManager.checkLoginStatus {
+            self.shouldAnimateIndicator(false)
+            self.updateData()
+        }
     }
     
     private func updateData() {
