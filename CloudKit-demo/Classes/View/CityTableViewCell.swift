@@ -9,9 +9,9 @@
 import UIKit
 
 private let kCellReuseId = "cityTableViewCellReuseId"
-private let kCityTableViewCell = "YALCityTableViewCell"
+private let kCityTableViewCell = "CityTableViewCell"
 
-class YALCityTableViewCell: UITableViewCell {
+class CityTableViewCell: UITableViewCell {
 
     @IBOutlet var pictureImageView: UIImageView!
     @IBOutlet var nameLable: UILabel!
@@ -24,7 +24,7 @@ class YALCityTableViewCell: UITableViewCell {
         return kCityTableViewCell
     }
     
-    func setCity(city: YALCity) {
+    func setCity(city: City) {
         nameLable.text = city.name
         pictureImageView.alpha = 0.0
         pictureImageView.image = city.image

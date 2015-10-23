@@ -9,9 +9,9 @@
 import UIKit
 import CloudKit
 
-private let kRecordType = "Cities"
+private let recordType = "Cities"
 
-final class YALCloudKitManager {
+final class CloudKitManager {
     
     private init() {
         ///forbide to create instance of helper class
@@ -22,13 +22,17 @@ final class YALCloudKitManager {
     }
     
     //MARK: Retrieve existing records
-    static func fetchAllCitiesWithCompletionHandler(completion: (records: [YALCity]!, error: NSError?) -> Void) {
+    static func fetchAllCities(completion: (records: [City]?, error: NSError!) -> Void) {
+        publicCloudDatabase().fetchAllRecordZonesWithCompletionHandler { (zones, error) -> Void in
+            print(zones)
+        }
+        
         let predicate = NSPredicate(value: true)
         
-        let query = CKQuery(recordType: kRecordType, predicate: predicate)
+        let query = CKQuery(recordType: recordType, predicate: predicate)
         
-        publicCloudDatabase().performQuery(query, inZoneWithID: nil) { (records, error) -> Void in
-            let cities = records?.map { YALCity(record: $0) }
+        publicCloudDatabase().performQuery(query, inZoneWithID: nil) { (records, error) in
+            let cities = records?.map { City(record: $0) }
             
             dispatch_async(dispatch_get_main_queue()) {
                 completion(records: cities, error: error)
@@ -37,21 +41,19 @@ final class YALCloudKitManager {
     }
     
     //MARK: add a new record
-    static func createRecordWithCompletionHandler(recordDic: [String: String], completion: (CKRecord!, NSError?) -> Void) {
-        let record = CKRecord(recordType: kRecordType)
+    static func createRecord(recordData: [String: String], completion: (record: CKRecord?, error: NSError!) -> Void) {
+        let record = CKRecord(recordType: recordType)
         
-        for (key, value) in recordDic {
-            if key == YALCityPicture {
-                var data: NSData?
+        for (key, value) in recordData {
+            if key == cityPicture {
                 if let path = NSBundle.mainBundle().pathForResource(value, ofType: "jpg") {
                     do {
-                        data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: .DataReadingMappedIfSafe)
+                        let data = try NSData(contentsOfURL: NSURL(fileURLWithPath: path), options: .DataReadingMappedIfSafe)
+                        record.setValue(data, forKey: key)
                     } catch let error {
                         print(error)
                     }
                 }
-                
-                record.setValue(data, forKey: key)
             } else {
                 record.setValue(value, forKey: key)
             }
@@ -59,7 +61,7 @@ final class YALCloudKitManager {
         
         publicCloudDatabase().saveRecord(record, completionHandler: { (savedRecord, error) in
             dispatch_async(dispatch_get_main_queue()) {
-                completion(record, error)
+                completion(record: record, error: error)
             }
         })
     }
@@ -93,6 +95,21 @@ final class YALCloudKitManager {
                 completion (deletedRecordId?.recordName, error)
             }
         })
+    }
+    
+    //MARK: check that user is logged
+    static func checkLoginStatus(handler: () -> Void) {
+        CKContainer.defaultContainer().accountStatusWithCompletionHandler{ (accountStatus, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+            switch  accountStatus{
+            case .Available:
+                handler()
+            default:
+                print("account unavailable")
+            }
+        }
     }
     
 }

@@ -9,13 +9,13 @@
 import UIKit
 import CloudKit
 
-let YALCityName = "name"
-let YALCityText = "text"
-let YALCityPicture = "picture"
+let cityName = "name"
+let cityText = "text"
+let cityPicture = "picture"
 
 private let kCitiesSourcePlist = "Cities"
 
-class YALCity: Equatable {
+class City: Equatable {
     
     static var cities: [[String: String]]!
     
@@ -44,9 +44,9 @@ class YALCity: Equatable {
     }
     
     init(record: CKRecord) {
-        self.name = record.valueForKey(YALCityName) as! String
-        self.text = record.valueForKey(YALCityText) as! String
-        if let imageData = record.valueForKey(YALCityPicture) as? NSData {
+        self.name = record.valueForKey(cityName) as! String
+        self.text = record.valueForKey(cityText) as! String
+        if let imageData = record.valueForKey(cityPicture) as? NSData {
             self.image = UIImage(data:imageData)
         }
         self.identifier = record.recordID.recordName
@@ -54,6 +54,6 @@ class YALCity: Equatable {
     
 }
 
-func ==(lhs: YALCity, rhs: YALCity) -> Bool {
+func ==(lhs: City, rhs: City) -> Bool {
     return lhs.identifier == rhs.identifier
 }

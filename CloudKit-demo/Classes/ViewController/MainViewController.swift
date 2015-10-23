@@ -10,19 +10,23 @@ import UIKit
 
 private let kShowDetailSegueId = "showDetailSegueId"
 
-class YALMainViewController: YALBaseViewController, UITableViewDataSource, UITableViewDelegate {
+class MainViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var indicatorView: UIActivityIndicatorView!
     
-    private var cities = [YALCity]()
+    private var cities = [City]()
     
     // MARK: Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupView()
-        updateData()
+        
+        
+        CloudKitManager.checkLoginStatus {
+            self.updateData()
+        }
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -31,42 +35,45 @@ class YALMainViewController: YALBaseViewController, UITableViewDataSource, UITab
             let selectedRows: [NSIndexPath] = self.tableView.indexPathsForSelectedRows!
             let selectedIndexPath = selectedRows.last
             
-            let detailedVC = segue.destinationViewController as! YALDetailedViewController
+            let detailedVC = segue.destinationViewController as! DetailedViewController
             detailedVC.city = self.cities[selectedIndexPath!.row]
         }
     }
     
     // MARK: Private
     private func setupView() {
-        let cellNib = UINib(nibName: YALCityTableViewCell.nibName(), bundle: nil)
-        self.tableView.registerNib(cellNib, forCellReuseIdentifier: YALCityTableViewCell.reuseIdentifier())
+        let cellNib = UINib(nibName: CityTableViewCell.nibName(), bundle: nil)
+        tableView.registerNib(cellNib, forCellReuseIdentifier: CityTableViewCell.reuseIdentifier())
     }
     
     private func updateData() {
         shouldAnimateIndicator(true)
-        YALCloudKitManager.fetchAllCitiesWithCompletionHandler { (records, error) -> Void in
+        
+        CloudKitManager.fetchAllCities { (records, error) in
             self.shouldAnimateIndicator(false)
             
-            if let error = error {
-                 self.presentMessage(error.localizedDescription)
-            } else {
-                if records.isEmpty {
-                   self.presentMessage("Add City from the default list. Database is empty")
-                } else {
-                    self.cities = records
-                    self.tableView.reloadData()
-                }
+            guard let cities = records else {
+                self.presentMessage(error.localizedDescription)
+                return
             }
+            
+            guard !cities.isEmpty else {
+                self.presentMessage("Add City from the default list. Database is empty")
+                return
+            }
+            
+            self.cities = cities
+            self.tableView.reloadData()
         }
     }
     
-    private func addCity(city: YALCity) {
+    private func addCity(city: City) {
         cities.insert(city, atIndex: 0)
         tableView.reloadData()
     }
     
-    private func removeCity(city: YALCity) {
-        cities = self.cities.filter { (current: YALCity) -> Bool in
+    private func removeCity(city: City) {
+        cities = self.cities.filter { (current: City) -> Bool in
             return current != city
         }
         tableView.reloadData()
@@ -85,9 +92,9 @@ class YALMainViewController: YALBaseViewController, UITableViewDataSource, UITab
     
     // MARK: IBActions
     @IBAction func unwindToMainViewController(segue: UIStoryboardSegue) {
-        if let source = segue.sourceViewController as? YALSelectCityViewController {
+        if let source = segue.sourceViewController as? SelectCityViewController {
             addCity(source.selectedCity)
-        } else if let source = segue.sourceViewController as? YALDetailedViewController {
+        } else if let source = segue.sourceViewController as? DetailedViewController {
             removeCity(source.city)
         }
         
@@ -101,7 +108,7 @@ class YALMainViewController: YALBaseViewController, UITableViewDataSource, UITab
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(YALCityTableViewCell.reuseIdentifier()) as! YALCityTableViewCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(CityTableViewCell.reuseIdentifier()) as! CityTableViewCell
         
         let city = self.cities[indexPath.row]
         cell.setCity(city)

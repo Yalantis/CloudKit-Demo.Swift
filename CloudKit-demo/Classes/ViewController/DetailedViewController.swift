@@ -11,9 +11,9 @@ import UIKit
 private let kUpdatedMessage = "City has been updated successfully"
 private let kUnwindSegue = "unwindToMainId"
 
-class YALDetailedViewController: YALBaseViewController {
+class DetailedViewController: BaseViewController {
     
-    var city: YALCity!
+    var city: City!
     
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var cityImageView: UIImageView!
@@ -66,13 +66,13 @@ class YALDetailedViewController: YALBaseViewController {
         let updatedText = self.descriptionTextView.text
         shouldAnimateIndicator(true)
         
-        YALCloudKitManager.updateRecord(identifier, text: updatedText) { [unowned self] (record, error) -> Void in
+        CloudKitManager.updateRecord(identifier, text: updatedText) { [unowned self] (record, error) -> Void in
             
             self.shouldAnimateIndicator(false)
             if let error = error {
                 self.presentMessage(error.localizedDescription)
             } else {
-                self.city.text = record.valueForKey(YALCityText) as! String
+                self.city.text = record.valueForKey(cityText) as! String
                 self.presentMessage(kUpdatedMessage)
             }
         }
@@ -80,7 +80,7 @@ class YALDetailedViewController: YALBaseViewController {
     
     @IBAction private func removeButtonDidPress(button:UIButton) {
         self.shouldAnimateIndicator(true)
-        YALCloudKitManager.removeRecord(self.city.identifier, completion: { [unowned self] (recordId, error) -> Void in
+        CloudKitManager.removeRecord(self.city.identifier, completion: { [unowned self] (recordId, error) -> Void in
             
             self.shouldAnimateIndicator(false)
             

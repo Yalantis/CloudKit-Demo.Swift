@@ -12,9 +12,10 @@ import CloudKit
 private let kCellReuseId = "selectCityReuseId"
 private let kUnwindSelectCitySegue = "unwindSelectCityToMainId"
 
-class YALSelectCityViewController: YALBaseViewController, UITableViewDataSource, UITableViewDelegate {
+class SelectCityViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var selectedCity: YALCity!
+    var selectedCity: City!
+    private var selectedIndexPath: NSIndexPath?
     
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var indicatorView: UIActivityIndicatorView!
@@ -22,17 +23,17 @@ class YALSelectCityViewController: YALBaseViewController, UITableViewDataSource,
     // MARK: IBActions
     @IBAction private func saveButtonDidPress(button:UIButton) {
         if let selectedIndexPath = tableView.indexPathsForSelectedRows?.last {
-            let recordDic = YALCity.defaultContent()[selectedIndexPath.row]
+            let cityData = City.defaultContent()[selectedIndexPath.row]
             shouldAnimateIndicator(true)
-            YALCloudKitManager.createRecordWithCompletionHandler(recordDic, completion: { (record, error) -> Void in
+            CloudKitManager.createRecord(cityData, completion: { (record, error) -> Void in
                 self.shouldAnimateIndicator(false)
-                if let error = error {
-                    self.presentMessage(error.localizedDescription)
-                    return
-                }
                 
-                self.selectedCity = YALCity(record: record)
-                self.performSegueWithIdentifier(kUnwindSelectCitySegue, sender: self)
+                if let record = record {
+                    self.selectedCity = City(record: record)
+                    self.performSegueWithIdentifier(kUnwindSelectCitySegue, sender: self)
+                } else {
+                    self.presentMessage(error.localizedDescription)
+                }
             })
         }
     }
@@ -51,14 +52,16 @@ class YALSelectCityViewController: YALBaseViewController, UITableViewDataSource,
     
     // MARK: UITableViewDataSource
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return YALCity.defaultContent().count
+        return City.defaultContent().count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(kCellReuseId, forIndexPath: indexPath)
         
-        let cityName = YALCity.defaultContent()[indexPath.row]["name"]
+        let cityName = City.defaultContent()[indexPath.row]["name"]
         cell.textLabel?.text = cityName
+        
+        cell.accessoryType = indexPath == selectedIndexPath ? .Checkmark : .None
         
         return cell
     }
@@ -66,15 +69,15 @@ class YALSelectCityViewController: YALBaseViewController, UITableViewDataSource,
     // MARK: UITableViewDelegate
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        if cell?.accessoryType == .None {
-            cell?.accessoryType = .Checkmark
-        } else {
-            cell?.accessoryType = .None
-        }
+        
+        cell?.accessoryType = .Checkmark
+        selectedIndexPath = indexPath
     }
     
     func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         let cell = tableView.cellForRowAtIndexPath(indexPath)
-        cell?.accessoryType = UITableViewCellAccessoryType.None
+        
+        cell?.accessoryType = .None
+        selectedIndexPath = indexPath
     }
 }
