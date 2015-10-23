@@ -23,10 +23,6 @@ final class CloudKitManager {
     
     //MARK: Retrieve existing records
     static func fetchAllCities(completion: (records: [City]?, error: NSError!) -> Void) {
-        publicCloudDatabase().fetchAllRecordZonesWithCompletionHandler { (zones, error) -> Void in
-            print(zones)
-        }
-        
         let predicate = NSPredicate(value: true)
         
         let query = CKQuery(recordType: recordType, predicate: predicate)
@@ -73,11 +69,12 @@ final class CloudKitManager {
             
             guard let record = updatedRecord else  {
                 dispatch_async(dispatch_get_main_queue()) {
-                    completion(updatedRecord, error)
+                    completion(nil, error)
                 }
                 return
             }
             
+            record.setValue(text, forKey: cityText)
             self.publicCloudDatabase().saveRecord(record, completionHandler: { (savedRecord, error) in
                 dispatch_async(dispatch_get_main_queue()) {
                     completion(savedRecord, error)

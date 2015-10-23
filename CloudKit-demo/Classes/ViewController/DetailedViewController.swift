@@ -60,14 +60,13 @@ class DetailedViewController: BaseViewController {
     
     // MARK: IBActions
     @IBAction private func saveButtonDidPress(button:UIButton) {
-        self.view.endEditing(true)
+        view.endEditing(true)
         
-        let identifier = self.city.identifier
-        let updatedText = self.descriptionTextView.text
+        let identifier = city.identifier
+        let updatedText = descriptionTextView.text
+        
         shouldAnimateIndicator(true)
-        
         CloudKitManager.updateRecord(identifier, text: updatedText) { [unowned self] (record, error) -> Void in
-            
             self.shouldAnimateIndicator(false)
             if let error = error {
                 self.presentMessage(error.localizedDescription)
