@@ -23,7 +23,6 @@ class MainViewController: BaseViewController, UITableViewDataSource, UITableView
         
         setupView()
         
-        
         CloudKitManager.checkLoginStatus {
             self.updateData()
         }
@@ -44,6 +43,7 @@ class MainViewController: BaseViewController, UITableViewDataSource, UITableView
     private func setupView() {
         let cellNib = UINib(nibName: CityTableViewCell.nibName(), bundle: nil)
         tableView.registerNib(cellNib, forCellReuseIdentifier: CityTableViewCell.reuseIdentifier())
+        tableView.tableFooterView = UIView()
     }
     
     private func updateData() {
