@@ -7,11 +7,10 @@ CloudKit, Apple’s remote data storage service, provides a possibility to store
 
 Here is the same demo on [Objective-C](https://github.com/Yalantis/CloudKit-Demo.Objective-C).
 
-## Swift 2.0
-Currently we maintain a [branch](https://github.com/Yalantis/CloudKit-Demo.Swift/tree/swift_2.0) to provide support for Swift 2.0.
-
 ## Requirements
-iOS 8.0
+iOS 8.0+
+XCode 7
+Swift 2
 
 ## How To Get Started
 
