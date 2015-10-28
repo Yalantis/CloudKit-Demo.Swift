@@ -8,7 +8,7 @@
 
 import UIKit
 
-class YALBaseViewController: UIViewController {
+class BaseViewController: UIViewController {
 
     // MARK: Public
     func presentMessage(message: String) {

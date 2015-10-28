@@ -8,7 +8,7 @@
         <!--Cities-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="YALMainViewController" customModule="CloudKit_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="MainViewController" customModule="CloudKit_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -48,6 +48,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Cities" id="0Dg-8z-ZuK">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="vJT-AH-5XV">
+                            <connections>
+                                <action selector="reloadCities" destination="vXZ-lx-hvc" id="l2K-dN-TrM"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="rnv-Bf-buL">
                             <connections>
                                 <segue destination="d60-Hc-kgs" kind="show" id="wQ4-ph-Vg6"/>
@@ -68,7 +73,7 @@
         <!--Select City-->
         <scene sceneID="Kit-0h-ZRj">
             <objects>
-                <viewController id="d60-Hc-kgs" customClass="YALSelectCityViewController" customModule="CloudKit_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="d60-Hc-kgs" customClass="SelectCityViewController" customModule="CloudKit_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="sf2-56-cgE"/>
                         <viewControllerLayoutGuide type="bottom" id="NIl-mp-MXh"/>
@@ -88,11 +93,11 @@
                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </view>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="selectCityReuseId" id="LX1-Bk-bqF">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="checkmark" indentationWidth="10" reuseIdentifier="selectCityReuseId" id="LX1-Bk-bqF">
                                         <rect key="frame" x="0.0" y="86" width="320" height="54"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="LX1-Bk-bqF" id="o6B-hk-PLV">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="53"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="281" height="53"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <animations/>
                                         </tableViewCellContentView>
@@ -174,7 +179,7 @@
         <!--City info-->
         <scene sceneID="5OT-R5-LjP">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="1kL-bI-mRX" customClass="YALDetailedViewController" customModule="CloudKit_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="1kL-bI-mRX" customClass="DetailedViewController" customModule="CloudKit_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="mHI-v4-BEc"/>
                         <viewControllerLayoutGuide type="bottom" id="k5c-qR-PzH"/>
@@ -206,7 +211,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ju-Lj-P6b">
+                                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ju-Lj-P6b">
                                                 <rect key="frame" x="16" y="326" width="288" height="222"/>
                                                 <animations/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -238,15 +243,6 @@
                                                     <action selector="removeButtonDidPress:" destination="1kL-bI-mRX" eventType="touchUpInside" id="xjE-3y-dfy"/>
                                                 </connections>
                                             </button>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="lIW-OV-PCc">
-                                                <rect key="frame" x="142" y="265" width="37" height="37"/>
-                                                <animations/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="37" id="8vz-KT-TMe"/>
-                                                    <constraint firstAttribute="height" constant="37" id="xW3-9w-jp6"/>
-                                                </constraints>
-                                                <color key="color" red="0.63921568630000003" green="0.63921568630000003" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
-                                            </activityIndicatorView>
                                         </subviews>
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -260,8 +256,6 @@
                                             <constraint firstAttribute="trailing" secondItem="0fB-pT-uzj" secondAttribute="trailing" id="MuG-AA-eoI"/>
                                             <constraint firstItem="5hi-Dm-0nj" firstAttribute="top" secondItem="0fB-pT-uzj" secondAttribute="bottom" constant="8" id="NcC-9n-TeP"/>
                                             <constraint firstAttribute="trailing" secondItem="5hi-Dm-0nj" secondAttribute="trailing" constant="16" id="RqY-Lh-f7R"/>
-                                            <constraint firstAttribute="centerY" secondItem="lIW-OV-PCc" secondAttribute="centerY" id="bZF-9a-umC"/>
-                                            <constraint firstAttribute="centerX" secondItem="lIW-OV-PCc" secondAttribute="centerX" id="lV1-be-U3V"/>
                                             <constraint firstItem="1Ju-Lj-P6b" firstAttribute="leading" secondItem="CGM-u9-pgo" secondAttribute="leading" constant="16" id="oRv-O3-eg4"/>
                                             <constraint firstItem="1Ju-Lj-P6b" firstAttribute="top" secondItem="5hi-Dm-0nj" secondAttribute="bottom" constant="8" id="rKv-gF-iJa"/>
                                             <constraint firstItem="0fB-pT-uzj" firstAttribute="leading" secondItem="CGM-u9-pgo" secondAttribute="leading" id="tD9-qk-Ybl"/>
@@ -278,14 +272,25 @@
                                     <constraint firstAttribute="width" secondItem="CGM-u9-pgo" secondAttribute="width" id="pbn-rm-iJW"/>
                                 </constraints>
                             </scrollView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="lIW-OV-PCc">
+                                <rect key="frame" x="141" y="286" width="37" height="37"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="37" id="8vz-KT-TMe"/>
+                                    <constraint firstAttribute="height" constant="37" id="xW3-9w-jp6"/>
+                                </constraints>
+                                <color key="color" red="0.63921568630000003" green="0.63921568630000003" blue="0.63921568630000003" alpha="1" colorSpace="calibratedRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="lIW-OV-PCc" firstAttribute="centerY" secondItem="LSJ-oR-5eU" secondAttribute="centerY" constant="20" id="73l-4d-YO2"/>
                             <constraint firstItem="oeh-9d-b7x" firstAttribute="top" secondItem="LSJ-oR-5eU" secondAttribute="top" id="BkB-ze-UtH"/>
                             <constraint firstAttribute="trailing" secondItem="oeh-9d-b7x" secondAttribute="trailing" id="Cz8-oi-OB9"/>
                             <constraint firstAttribute="width" secondItem="CGM-u9-pgo" secondAttribute="width" id="GPT-Ry-JJQ"/>
                             <constraint firstItem="k5c-qR-PzH" firstAttribute="top" secondItem="oeh-9d-b7x" secondAttribute="bottom" id="ezo-ay-zxR"/>
+                            <constraint firstItem="lIW-OV-PCc" firstAttribute="centerX" secondItem="LSJ-oR-5eU" secondAttribute="centerX" id="f85-wu-BVQ"/>
                             <constraint firstItem="oeh-9d-b7x" firstAttribute="leading" secondItem="LSJ-oR-5eU" secondAttribute="leading" id="khV-49-Wbs"/>
                         </constraints>
                         <variation key="default">

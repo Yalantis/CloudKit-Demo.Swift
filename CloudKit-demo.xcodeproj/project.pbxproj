@@ -13,18 +13,18 @@
 		928E33781BD9410D005958E7 /* NewYork.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 928E33731BD9410D005958E7 /* NewYork.jpg */; };
 		928E33791BD9410D005958E7 /* SanFrancisco.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 928E33741BD9410D005958E7 /* SanFrancisco.jpg */; };
 		928E337A1BD9410D005958E7 /* Singapore.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 928E33751BD9410D005958E7 /* Singapore.jpg */; };
-		AA237A861ACA904500003B42 /* YALDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA237A851ACA904500003B42 /* YALDetailedViewController.swift */; };
+		AA237A861ACA904500003B42 /* DetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA237A851ACA904500003B42 /* DetailedViewController.swift */; };
 		AA79D2521AC2A12D00308B96 /* CloudKit_demoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D2511AC2A12D00308B96 /* CloudKit_demoTests.swift */; };
 		AA79D2641AC2A1C400308B96 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D25C1AC2A1C400308B96 /* AppDelegate.swift */; };
 		AA79D2651AC2A1C400308B96 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AA79D2611AC2A1C400308B96 /* Images.xcassets */; };
 		AA79D2671AC2A1C400308B96 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA79D2631AC2A1C400308B96 /* Main.storyboard */; };
-		AA79D26C1AC2A27600308B96 /* YALBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D26B1AC2A27600308B96 /* YALBaseViewController.swift */; };
-		AA79D26E1AC2A2B800308B96 /* YALMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D26D1AC2A2B800308B96 /* YALMainViewController.swift */; };
-		AA8B301F1AC9D30D001D4BDA /* YALSelectCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B301E1AC9D30D001D4BDA /* YALSelectCityViewController.swift */; };
-		AAE54DAA1AC2AC4900622C50 /* YALCityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE54DA81AC2AC4900622C50 /* YALCityTableViewCell.swift */; };
-		AAE54DAB1AC2AC4900622C50 /* YALCityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE54DA91AC2AC4900622C50 /* YALCityTableViewCell.xib */; };
-		AAE54DB51AC2CB8A00622C50 /* YALCloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE54DB41AC2CB8A00622C50 /* YALCloudKitManager.swift */; };
-		AAE54DBA1AC2D12800622C50 /* YALCity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE54DB91AC2D12800622C50 /* YALCity.swift */; };
+		AA79D26C1AC2A27600308B96 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D26B1AC2A27600308B96 /* BaseViewController.swift */; };
+		AA79D26E1AC2A2B800308B96 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA79D26D1AC2A2B800308B96 /* MainViewController.swift */; };
+		AA8B301F1AC9D30D001D4BDA /* SelectCityViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AA8B301E1AC9D30D001D4BDA /* SelectCityViewController.swift */; };
+		AAE54DAA1AC2AC4900622C50 /* CityTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE54DA81AC2AC4900622C50 /* CityTableViewCell.swift */; };
+		AAE54DAB1AC2AC4900622C50 /* CityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AAE54DA91AC2AC4900622C50 /* CityTableViewCell.xib */; };
+		AAE54DB51AC2CB8A00622C50 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE54DB41AC2CB8A00622C50 /* CloudKitManager.swift */; };
+		AAE54DBA1AC2D12800622C50 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE54DB91AC2D12800622C50 /* City.swift */; };
 		AAE54DBE1AC2D7F800622C50 /* Cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAE54DBD1AC2D7F800622C50 /* Cities.plist */; };
 /* End PBXBuildFile section */
 
@@ -45,7 +45,7 @@
 		928E33731BD9410D005958E7 /* NewYork.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NewYork.jpg; sourceTree = "<group>"; };
 		928E33741BD9410D005958E7 /* SanFrancisco.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = SanFrancisco.jpg; sourceTree = "<group>"; };
 		928E33751BD9410D005958E7 /* Singapore.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Singapore.jpg; sourceTree = "<group>"; };
-		AA237A851ACA904500003B42 /* YALDetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALDetailedViewController.swift; sourceTree = "<group>"; };
+		AA237A851ACA904500003B42 /* DetailedViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailedViewController.swift; sourceTree = "<group>"; };
 		AA23EB651AC422D6002FDDC0 /* CloudKit-demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "CloudKit-demo.entitlements"; sourceTree = "<group>"; };
 		AA79D2361AC2A12D00308B96 /* CloudKit-demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "CloudKit-demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA79D23A1AC2A12D00308B96 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -55,13 +55,13 @@
 		AA79D25C1AC2A1C400308B96 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA79D2611AC2A1C400308B96 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		AA79D2631AC2A1C400308B96 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		AA79D26B1AC2A27600308B96 /* YALBaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALBaseViewController.swift; sourceTree = "<group>"; };
-		AA79D26D1AC2A2B800308B96 /* YALMainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALMainViewController.swift; sourceTree = "<group>"; };
-		AA8B301E1AC9D30D001D4BDA /* YALSelectCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALSelectCityViewController.swift; sourceTree = "<group>"; };
-		AAE54DA81AC2AC4900622C50 /* YALCityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALCityTableViewCell.swift; sourceTree = "<group>"; };
-		AAE54DA91AC2AC4900622C50 /* YALCityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = YALCityTableViewCell.xib; sourceTree = "<group>"; };
-		AAE54DB41AC2CB8A00622C50 /* YALCloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALCloudKitManager.swift; sourceTree = "<group>"; };
-		AAE54DB91AC2D12800622C50 /* YALCity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = YALCity.swift; sourceTree = "<group>"; };
+		AA79D26B1AC2A27600308B96 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		AA79D26D1AC2A2B800308B96 /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		AA8B301E1AC9D30D001D4BDA /* SelectCityViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectCityViewController.swift; sourceTree = "<group>"; };
+		AAE54DA81AC2AC4900622C50 /* CityTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CityTableViewCell.swift; sourceTree = "<group>"; };
+		AAE54DA91AC2AC4900622C50 /* CityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CityTableViewCell.xib; sourceTree = "<group>"; };
+		AAE54DB41AC2CB8A00622C50 /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
+		AAE54DB91AC2D12800622C50 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		AAE54DBD1AC2D7F800622C50 /* Cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cities.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -155,7 +155,7 @@
 		AA79D25D1AC2A1C400308B96 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				AAE54DB91AC2D12800622C50 /* YALCity.swift */,
+				AAE54DB91AC2D12800622C50 /* City.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -163,8 +163,8 @@
 		AA79D25E1AC2A1C400308B96 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				AAE54DA81AC2AC4900622C50 /* YALCityTableViewCell.swift */,
-				AAE54DA91AC2AC4900622C50 /* YALCityTableViewCell.xib */,
+				AAE54DA81AC2AC4900622C50 /* CityTableViewCell.swift */,
+				AAE54DA91AC2AC4900622C50 /* CityTableViewCell.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -173,9 +173,9 @@
 			isa = PBXGroup;
 			children = (
 				AA79D26A1AC2A26500308B96 /* Base */,
-				AA79D26D1AC2A2B800308B96 /* YALMainViewController.swift */,
-				AA8B301E1AC9D30D001D4BDA /* YALSelectCityViewController.swift */,
-				AA237A851ACA904500003B42 /* YALDetailedViewController.swift */,
+				AA79D26D1AC2A2B800308B96 /* MainViewController.swift */,
+				AA8B301E1AC9D30D001D4BDA /* SelectCityViewController.swift */,
+				AA237A851ACA904500003B42 /* DetailedViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -194,7 +194,7 @@
 		AA79D26A1AC2A26500308B96 /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				AA79D26B1AC2A27600308B96 /* YALBaseViewController.swift */,
+				AA79D26B1AC2A27600308B96 /* BaseViewController.swift */,
 			);
 			path = Base;
 			sourceTree = "<group>";
@@ -214,7 +214,7 @@
 		AAE54DB31AC2CB7500622C50 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				AAE54DB41AC2CB8A00622C50 /* YALCloudKitManager.swift */,
+				AAE54DB41AC2CB8A00622C50 /* CloudKitManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -322,7 +322,7 @@
 				AA79D2651AC2A1C400308B96 /* Images.xcassets in Resources */,
 				928E33761BD9410D005958E7 /* Dubai.jpg in Resources */,
 				928E33791BD9410D005958E7 /* SanFrancisco.jpg in Resources */,
-				AAE54DAB1AC2AC4900622C50 /* YALCityTableViewCell.xib in Resources */,
+				AAE54DAB1AC2AC4900622C50 /* CityTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -340,14 +340,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AA79D26C1AC2A27600308B96 /* YALBaseViewController.swift in Sources */,
-				AA79D26E1AC2A2B800308B96 /* YALMainViewController.swift in Sources */,
+				AA79D26C1AC2A27600308B96 /* BaseViewController.swift in Sources */,
+				AA79D26E1AC2A2B800308B96 /* MainViewController.swift in Sources */,
 				AA79D2641AC2A1C400308B96 /* AppDelegate.swift in Sources */,
-				AA237A861ACA904500003B42 /* YALDetailedViewController.swift in Sources */,
-				AAE54DAA1AC2AC4900622C50 /* YALCityTableViewCell.swift in Sources */,
-				AAE54DB51AC2CB8A00622C50 /* YALCloudKitManager.swift in Sources */,
-				AAE54DBA1AC2D12800622C50 /* YALCity.swift in Sources */,
-				AA8B301F1AC9D30D001D4BDA /* YALSelectCityViewController.swift in Sources */,
+				AA237A861ACA904500003B42 /* DetailedViewController.swift in Sources */,
+				AAE54DAA1AC2AC4900622C50 /* CityTableViewCell.swift in Sources */,
+				AAE54DB51AC2CB8A00622C50 /* CloudKitManager.swift in Sources */,
+				AAE54DBA1AC2D12800622C50 /* City.swift in Sources */,
+				AA8B301F1AC9D30D001D4BDA /* SelectCityViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
