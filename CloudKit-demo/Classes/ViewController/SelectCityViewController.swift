@@ -78,6 +78,6 @@ class SelectCityViewController: BaseViewController, UITableViewDataSource, UITab
         let cell = tableView.cellForRowAtIndexPath(indexPath)
         
         cell?.accessoryType = .None
-        selectedIndexPath = indexPath
+        selectedIndexPath = nil
     }
 }

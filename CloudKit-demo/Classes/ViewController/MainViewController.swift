@@ -46,9 +46,13 @@ class MainViewController: BaseViewController, UITableViewDataSource, UITableView
     
     @IBAction func reloadCities() {
         shouldAnimateIndicator(true)
-        CloudKitManager.checkLoginStatus {
-            self.shouldAnimateIndicator(false)
-            self.updateData()
+        CloudKitManager.checkLoginStatus { isLogged in
+            if isLogged {
+                self.shouldAnimateIndicator(false)
+                self.updateData()
+            } else {
+                print("account unavailable")
+            }
         }
     }
     

@@ -95,16 +95,16 @@ final class CloudKitManager {
     }
     
     //MARK: check that user is logged
-    static func checkLoginStatus(handler: () -> Void) {
+    static func checkLoginStatus(handler: (islogged: Bool) -> Void) {
         CKContainer.defaultContainer().accountStatusWithCompletionHandler{ (accountStatus, error) in
             if let error = error {
                 print(error.localizedDescription)
             }
-            switch  accountStatus{
+            switch accountStatus{
             case .Available:
-                handler()
+                handler(islogged: true)
             default:
-                print("account unavailable")
+                handler(islogged: false)
             }
         }
     }
