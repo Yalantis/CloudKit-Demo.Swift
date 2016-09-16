@@ -26,7 +26,7 @@ class DetailedViewController: BaseViewController {
         super.viewDidLoad()
         
         setupView()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:Selector("keyboardWillShow:"), name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(DetailedViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
     }
     
     // MARK: Private
