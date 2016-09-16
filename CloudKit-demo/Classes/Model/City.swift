@@ -27,13 +27,13 @@ class City: Equatable {
     // MARK: Class methods
     static func defaultContent() -> [[String: String]] {
         if cities == nil {
-            let path = NSBundle.mainBundle().pathForResource(kCitiesSourcePlist, ofType: "plist")
-            let plistData = NSData(contentsOfFile: path!)
+            let path = Bundle.main.path(forResource: kCitiesSourcePlist, ofType: "plist")
+            let plistData = try? Data(contentsOf: URL(fileURLWithPath: path!))
             assert(plistData != nil, "Source doesn't exist")
             
             do {
-                cities = try NSPropertyListSerialization.propertyListWithData(plistData!,
-                    options: .MutableContainersAndLeaves, format: UnsafeMutablePointer()) as! [[String: String]]
+                cities = try PropertyListSerialization.propertyList(from: plistData!,
+                    options: .mutableContainersAndLeaves, format: nil) as! [[String: String]]
             }
             catch _ {
                 print("Cannot read data from the plist")
@@ -44,9 +44,9 @@ class City: Equatable {
     }
     
     init(record: CKRecord) {
-        self.name = record.valueForKey(cityName) as! String
-        self.text = record.valueForKey(cityText) as! String
-        if let imageData = record.valueForKey(cityPicture) as? NSData {
+        self.name = record.value(forKey: cityName) as! String
+        self.text = record.value(forKey: cityText) as! String
+        if let imageData = record.value(forKey: cityPicture) as? Data {
             self.image = UIImage(data:imageData)
         }
         self.identifier = record.recordID.recordName

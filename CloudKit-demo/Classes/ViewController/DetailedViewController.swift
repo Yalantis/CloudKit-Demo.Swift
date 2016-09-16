@@ -15,41 +15,41 @@ class DetailedViewController: BaseViewController {
     
     var city: City!
     
-    @IBOutlet private var scrollView: UIScrollView!
-    @IBOutlet private var cityImageView: UIImageView!
-    @IBOutlet private var nameLabel: UILabel!
-    @IBOutlet private var descriptionTextView: UITextView!
-    @IBOutlet private var indicatorView: UIActivityIndicatorView!
+    @IBOutlet fileprivate var scrollView: UIScrollView!
+    @IBOutlet fileprivate var cityImageView: UIImageView!
+    @IBOutlet fileprivate var nameLabel: UILabel!
+    @IBOutlet fileprivate var descriptionTextView: UITextView!
+    @IBOutlet fileprivate var indicatorView: UIActivityIndicatorView!
     
     // MARK: Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector:#selector(DetailedViewController.keyboardWillShow(_:)), name: UIKeyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector:#selector(DetailedViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
     }
     
     // MARK: Private
-    private func setupView() {
+    fileprivate func setupView() {
         self.cityImageView.image = self.city.image
         self.nameLabel.text = self.city.name
         self.descriptionTextView.text = self.city.text
     }
     
-    private func shouldAnimateIndicator(animate: Bool) {
+    fileprivate func shouldAnimateIndicator(_ animate: Bool) {
         if animate {
             self.indicatorView.startAnimating()
         } else {
             self.indicatorView.stopAnimating()
         }
         
-        self.view.userInteractionEnabled = !animate
-        self.navigationController!.navigationBar.userInteractionEnabled = !animate
+        self.view.isUserInteractionEnabled = !animate
+        self.navigationController!.navigationBar.isUserInteractionEnabled = !animate
     }
     
-    func keyboardWillShow(notification: NSNotification) {
+    func keyboardWillShow(_ notification: Notification) {
         
-        let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)!.CGRectValue()
+        let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)!.cgRectValue
         
         let keyboardHeight = keyboardSize.height
         let contentOffsetX = self.scrollView.contentOffset.x
@@ -59,25 +59,25 @@ class DetailedViewController: BaseViewController {
     }
     
     // MARK: IBActions
-    @IBAction private func saveButtonDidPress(button:UIButton) {
+    @IBAction fileprivate func saveButtonDidPress(_ button:UIButton) {
         view.endEditing(true)
         
         let identifier = city.identifier
-        let updatedText = descriptionTextView.text
+        let updatedText = descriptionTextView.text!
         
         shouldAnimateIndicator(true)
         CloudKitManager.updateRecord(identifier, text: updatedText) { [unowned self] (record, error) -> Void in
             self.shouldAnimateIndicator(false)
             if let error = error {
                 self.presentMessage(error.localizedDescription)
-            } else {
-                self.city.text = record.valueForKey(cityText) as! String
+            } else if let record = record {
+                self.city.text = record.value(forKey: cityText) as! String
                 self.presentMessage(kUpdatedMessage)
             }
         }
     }
     
-    @IBAction private func removeButtonDidPress(button:UIButton) {
+    @IBAction fileprivate func removeButtonDidPress(_ button:UIButton) {
         self.shouldAnimateIndicator(true)
         CloudKitManager.removeRecord(self.city.identifier, completion: { [unowned self] (recordId, error) -> Void in
             
@@ -86,7 +86,7 @@ class DetailedViewController: BaseViewController {
             if let error = error {
                 self.presentMessage(error.localizedDescription)
             } else {
-                self.performSegueWithIdentifier(kUnwindSegue, sender: self)
+                self.performSegue(withIdentifier: kUnwindSegue, sender: self)
             }
             })
     }

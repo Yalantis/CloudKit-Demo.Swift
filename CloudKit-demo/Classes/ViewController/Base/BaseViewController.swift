@@ -11,12 +11,12 @@ import UIKit
 class BaseViewController: UIViewController {
 
     // MARK: Public
-    func presentMessage(message: String) {
+    func presentMessage(_ message: String) {
         
         let alert = UIAlertView()
         alert.title = "CloudKit"
         alert.message = message
-        alert.addButtonWithTitle("Ok")
+        alert.addButton(withTitle: "Ok")
         alert.show()
     }
 }

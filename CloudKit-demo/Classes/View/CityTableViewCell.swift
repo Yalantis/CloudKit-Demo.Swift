@@ -24,12 +24,12 @@ class CityTableViewCell: UITableViewCell {
         return kCityTableViewCell
     }
     
-    func setCity(city: City) {
+    func setCity(_ city: City) {
         nameLable.text = city.name
         pictureImageView.alpha = 0.0
         pictureImageView.image = city.image
         
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3, animations: {
             self.pictureImageView.alpha = 1.0
         })
     }
