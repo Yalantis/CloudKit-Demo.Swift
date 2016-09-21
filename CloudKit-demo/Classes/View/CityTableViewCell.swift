@@ -8,29 +8,26 @@
 
 import UIKit
 
-private let kCellReuseId = "cityTableViewCellReuseId"
-private let kCityTableViewCell = "CityTableViewCell"
-
 class CityTableViewCell: UITableViewCell {
 
-    @IBOutlet var pictureImageView: UIImageView!
-    @IBOutlet var nameLable: UILabel!
+    @IBOutlet fileprivate var pictureImageView: UIImageView!
+    @IBOutlet fileprivate var nameLable: UILabel!
     
-    class func reuseIdentifier() -> String {
-        return kCellReuseId
+    class var reuseIdentifier: String {
+        return "cityTableViewCellReuseId"
     }
     
-    class func nibName() -> String {
-        return kCityTableViewCell
+    class var nibName: String {
+        return "CityTableViewCell"
     }
     
-    func setCity(city: City) {
+    func setCity(_ city: City) {
         nameLable.text = city.name
         pictureImageView.alpha = 0.0
         pictureImageView.image = city.image
         
-        UIView.animateWithDuration(0.3, animations: {
+        UIView.animate(withDuration: 0.3) {
             self.pictureImageView.alpha = 1.0
-        })
+        }
     }
 }
