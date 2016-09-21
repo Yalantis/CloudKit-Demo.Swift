@@ -24,25 +24,6 @@ class City: Equatable {
     var image: UIImage?
     var identifier: String
     
-    // MARK: Class methods
-    static func defaultContent() -> [[String: String]] {
-        if cities == nil {
-            let path = Bundle.main.path(forResource: kCitiesSourcePlist, ofType: "plist")
-            let plistData = try? Data(contentsOf: URL(fileURLWithPath: path!))
-            assert(plistData != nil, "Source doesn't exist")
-            
-            do {
-                cities = try PropertyListSerialization.propertyList(from: plistData!,
-                    options: .mutableContainersAndLeaves, format: nil) as! [[String: String]]
-            }
-            catch _ {
-                print("Cannot read data from the plist")
-            }
-        }
-
-        return cities
-    }
-    
     init(record: CKRecord) {
         self.name = record.value(forKey: cityName) as! String
         self.text = record.value(forKey: cityText) as! String
@@ -52,8 +33,28 @@ class City: Equatable {
         self.identifier = record.recordID.recordName
     }
     
+    static func ==(lhs: City, rhs: City) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
 }
 
-func ==(lhs: City, rhs: City) -> Bool {
-    return lhs.identifier == rhs.identifier
+extension City {
+    
+    static var defaultContent: [[String: String]] {
+        if cities == nil {
+            let path = Bundle.main.path(forResource: kCitiesSourcePlist, ofType: "plist")
+            let plistData = try? Data(contentsOf: URL(fileURLWithPath: path!))
+            assert(plistData != nil, "Source doesn't exist")
+            
+            do {
+                cities = try PropertyListSerialization.propertyList(from: plistData!,
+                                                                    options: .mutableContainersAndLeaves, format: nil) as! [[String: String]]
+            }
+            catch _ {
+                print("Cannot read data from the plist")
+            }
+        }
+        
+        return cities
+    }
 }

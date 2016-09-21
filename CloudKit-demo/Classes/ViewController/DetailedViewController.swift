@@ -31,9 +31,9 @@ class DetailedViewController: BaseViewController {
     
     // MARK: Private
     fileprivate func setupView() {
-        self.cityImageView.image = self.city.image
-        self.nameLabel.text = self.city.name
-        self.descriptionTextView.text = self.city.text
+        cityImageView.image = city.image
+        nameLabel.text = city.name
+        descriptionTextView.text = city.text
     }
     
     fileprivate func shouldAnimateIndicator(_ animate: Bool) {
@@ -66,7 +66,7 @@ class DetailedViewController: BaseViewController {
         let updatedText = descriptionTextView.text!
         
         shouldAnimateIndicator(true)
-        CloudKitManager.updateRecord(identifier, text: updatedText) { [unowned self] (record, error) -> Void in
+        CloudKitManager.updateRecord(identifier, text: updatedText) { record, error in
             self.shouldAnimateIndicator(false)
             if let error = error {
                 self.presentMessage(error.localizedDescription)
@@ -79,8 +79,7 @@ class DetailedViewController: BaseViewController {
     
     @IBAction fileprivate func removeButtonDidPress(_ button:UIButton) {
         self.shouldAnimateIndicator(true)
-        CloudKitManager.removeRecord(self.city.identifier, completion: { [unowned self] (recordId, error) -> Void in
-            
+        CloudKitManager.removeRecord(city.identifier) { recordId, error in
             self.shouldAnimateIndicator(false)
             
             if let error = error {
@@ -88,6 +87,6 @@ class DetailedViewController: BaseViewController {
             } else {
                 self.performSegue(withIdentifier: kUnwindSegue, sender: self)
             }
-            })
+        }
     }
 }

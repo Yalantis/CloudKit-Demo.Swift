@@ -12,7 +12,7 @@ import CloudKit
 private let kCellReuseId = "selectCityReuseId"
 private let kUnwindSelectCitySegue = "unwindSelectCityToMainId"
 
-class SelectCityViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
+class SelectCityViewController: BaseViewController {
     
     var selectedCity: City!
     fileprivate var selectedIndexPath: IndexPath?
@@ -23,9 +23,10 @@ class SelectCityViewController: BaseViewController, UITableViewDataSource, UITab
     // MARK: IBActions
     @IBAction fileprivate func saveButtonDidPress(_ button:UIButton) {
         if let selectedIndexPath = tableView.indexPathsForSelectedRows?.last {
-            let cityData = City.defaultContent()[(selectedIndexPath as NSIndexPath).row]
+            let cityData = City.defaultContent[selectedIndexPath.row]
             shouldAnimateIndicator(true)
-            CloudKitManager.createRecord(cityData, completion: { (record, error) -> Void in
+            
+            CloudKitManager.createRecord(cityData) { record, error in
                 self.shouldAnimateIndicator(false)
                 
                 if let record = record {
@@ -34,39 +35,44 @@ class SelectCityViewController: BaseViewController, UITableViewDataSource, UITab
                 } else if let error = error {
                     self.presentMessage(error.localizedDescription)
                 }
-            })
+            }
         }
     }
     
     // MARK: Private
     fileprivate func shouldAnimateIndicator(_ animate: Bool) {
         if animate {
-            self.indicatorView.startAnimating()
+            indicatorView.startAnimating()
         } else {
-            self.indicatorView.stopAnimating()
+            indicatorView.stopAnimating()
         }
         
-        self.tableView.isUserInteractionEnabled = !animate
-        self.navigationController!.navigationBar.isUserInteractionEnabled = !animate
+        tableView.isUserInteractionEnabled = !animate
+        navigationController!.navigationBar.isUserInteractionEnabled = !animate
     }
+}
+
+// MARK: UITableViewDataSource
+extension SelectCityViewController: UITableViewDataSource {
     
-    // MARK: UITableViewDataSource
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return City.defaultContent().count
+        return City.defaultContent.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kCellReuseId, for: indexPath)
         
-        let cityName = City.defaultContent()[(indexPath as NSIndexPath).row]["name"]
+        let cityName = City.defaultContent[indexPath.row]["name"]
         cell.textLabel?.text = cityName
-        
         cell.accessoryType = indexPath == selectedIndexPath ? .checkmark : .none
         
         return cell
     }
+}
+
+// MARK: UITableViewDelegate
+extension SelectCityViewController: UITableViewDelegate {
     
-    // MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.cellForRow(at: indexPath)
         

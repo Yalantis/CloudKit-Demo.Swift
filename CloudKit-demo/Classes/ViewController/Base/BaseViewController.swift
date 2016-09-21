@@ -10,13 +10,10 @@ import UIKit
 
 class BaseViewController: UIViewController {
 
-    // MARK: Public
     func presentMessage(_ message: String) {
-        
-        let alert = UIAlertView()
-        alert.title = "CloudKit"
-        alert.message = message
-        alert.addButton(withTitle: "Ok")
-        alert.show()
+        let alertViewController = UIAlertController(title: "CloudKit", message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+        alertViewController.addAction(okAction)
+        present(alertViewController, animated: true, completion: nil)
     }
 }
