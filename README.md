@@ -1,4 +1,3 @@
-
 <p align="center" >
   <img src="https://github.com/Yalantis/CloudKit-Demo.Swift/blob/master/CloudKit-Swift.png" alt="CloudKit" title="CloudKit">
 </p>
@@ -8,9 +7,10 @@ CloudKit, Apple’s remote data storage service, provides a possibility to store
 Here is the same demo on [Objective-C](https://github.com/Yalantis/CloudKit-Demo.Objective-C).
 
 ## Requirements
+
 - iOS 8.0+
-- XCode 7.1
-- Swift 2.1
+- XCode 8
+- Swift 3
 
 ## How To Get Started
 
@@ -23,43 +23,48 @@ For more detailed information take a look at [our article](https://yalantis.com/
 ## Usage
 
 ### Retrieve existing records
+
 ```swift
-var predicate = NSPredicate(value: true)
-var query = CKQuery(recordType: kRecordType, predicate: predicate)
-CKContainer.defaultContainer().publicCloudDatabase.performQuery(query, inZoneWithID: nil) { (records, error) -> Void in
-  
+let predicate = NSPredicate(value: true)
+let query = CKQuery(recordType: recordType, predicate: predicate)
+CKContainer.default().publicCloudDatabase.perform(query, inZoneWith: nil) { records, error in
+
 }
 ```
-### Create a new record
-```swift
-var record = CKRecord(recordType: "RecordType")
-record.setValue("Some data", forKey: "key")
-CKContainer.defaultContainer().publicCloudDatabase.saveRecord(record, completionHandler: { (savedRecord: CKRecord!, error: NSError!) -> Void in
 
-})
+### Create a new record
+
+```swift
+let record = CKRecord(recordType: "RecordType")
+record.setValue("Some data", forKey: "key")
+CKContainer.default().publicCloudDatabase.save(record) { savedRecord, error in
+
+}
 ```
 
 ### Update the record
+
 ```swift
 let recordId = CKRecordID(recordName: "RecordType")
-CKContainer.defaultContainer().publicCloudDatabase.fetchRecordWithID(recordId, completionHandler: { (updatedRecord: CKRecord!, error: NSError!) -> Void in
-            
-            if error != nil {
-                return
-            }
-            
-            updatedRecord.setObject("Some data", forKey: "key")
-            CKContainer.defaultContainer().publicCloudDatabase.saveRecord(updatedRecord, completionHandler: { (savedRecord: CKRecord!, error: NSError!) -> Void in
+CKContainer.default().publicCloudDatabase.fetch(withRecordID: recordId) { updatedRecord, error in  
+    if error != nil {
+        return
+    }
 
-            })
-        })
+    updatedRecord.setObject("Some data", forKey: "key")
+    CKContainer.default().publicCloudDatabase.save(updatedRecord) { savedRecord, error in
+
+    }
+}
 ```
+
 ### Remove the record
+
 ```swift
 let recordId = CKRecordID(recordName: recordId)
-CKContainer.defaultContainer().publicCloudDatabase.deleteRecordWithID(recordId, completionHandler: { (deletedRecordId: CKRecordID!, error: NSError!) -> Void in
+CKContainer.default().publicCloudDatabase.delete(withRecordID: recordId) { deletedRecordId, error in
 
-})
+}
 ```
 
 ## Contacts
