@@ -48,7 +48,7 @@ extension City {
             
             do {
                 cities = try PropertyListSerialization.propertyList(from: plistData!,
-                                                                    options: .mutableContainersAndLeaves, format: nil) as! [[String: String]]
+                                                                    options: .mutableContainersAndLeaves, format: nil) as? [[String: String]]
             }
             catch _ {
                 print("Cannot read data from the plist")

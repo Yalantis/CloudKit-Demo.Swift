@@ -25,6 +25,7 @@
 		AAE54DB51AC2CB8A00622C50 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE54DB41AC2CB8A00622C50 /* CloudKitManager.swift */; };
 		AAE54DBA1AC2D12800622C50 /* City.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAE54DB91AC2D12800622C50 /* City.swift */; };
 		AAE54DBE1AC2D7F800622C50 /* Cities.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAE54DBD1AC2D7F800622C50 /* Cities.plist */; };
+		B5F97FC52445F225006AB660 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B5F97FC42445F225006AB660 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -49,6 +50,7 @@
 		AAE54DB41AC2CB8A00622C50 /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		AAE54DB91AC2D12800622C50 /* City.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = City.swift; sourceTree = "<group>"; };
 		AAE54DBD1AC2D7F800622C50 /* Cities.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Cities.plist; sourceTree = "<group>"; };
+		B5F97FC42445F225006AB660 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 				AA79D2611AC2A1C400308B96 /* Images.xcassets */,
 				AAE54DBD1AC2D7F800622C50 /* Cities.plist */,
 				AA79D2631AC2A1C400308B96 /* Main.storyboard */,
+				B5F97FC42445F225006AB660 /* LaunchScreen.storyboard */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				928E33771BD9410D005958E7 /* London.jpg in Resources */,
 				928E33781BD9410D005958E7 /* NewYork.jpg in Resources */,
 				928E337A1BD9410D005958E7 /* Singapore.jpg in Resources */,
+				B5F97FC52445F225006AB660 /* LaunchScreen.storyboard in Resources */,
 				AA79D2671AC2A1C400308B96 /* Main.storyboard in Resources */,
 				AAE54DBE1AC2D7F800622C50 /* Cities.plist in Resources */,
 				AA79D2651AC2A1C400308B96 /* Images.xcassets in Resources */,

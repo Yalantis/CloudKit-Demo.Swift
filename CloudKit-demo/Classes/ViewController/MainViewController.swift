@@ -47,16 +47,18 @@ fileprivate extension MainViewController {
     func updateData() {
         shouldAnimateIndicator(true)
         
-        CloudKitManager.fetchAllCities { records, error in
-            self.shouldAnimateIndicator(false)
+        CloudKitManager.fetchAllCities { [weak self] records, error in
+            guard let self = self else { return }
             
+            self.shouldAnimateIndicator(false)
             guard let cities = records else {
                 self.presentMessage(error!.localizedDescription)
+                
                 return
             }
-            
             guard !cities.isEmpty else {
                 self.presentMessage("Add City from the default list. Database is empty")
+                
                 return
             }
             
@@ -104,7 +106,9 @@ extension MainViewController {
     
     @IBAction func reloadCities() {
         shouldAnimateIndicator(true)
-        CloudKitManager.checkLoginStatus { isLogged in
+        CloudKitManager.checkLoginStatus { [weak self] isLogged in
+            guard let self = self else { return }
+            
             self.shouldAnimateIndicator(false)
             if isLogged {
                 self.updateData()

@@ -96,11 +96,8 @@ final class CloudKitManager {
             if let error = error {
                 print(error.localizedDescription)
             }
-            switch accountStatus {
-            case .available:
-                handler(true)
-            default:
-                handler(false)
+            DispatchQueue.main.async {
+                handler(accountStatus == .available)
             }
         }
     }
