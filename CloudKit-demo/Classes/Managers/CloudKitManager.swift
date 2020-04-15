@@ -83,11 +83,11 @@ final class CloudKitManager {
     //MARK: remove the record
     static func removeRecord(_ recordId: String, completion: @escaping (String?, NSError?) -> Void) {
         let recordId = CKRecord.ID(recordName: recordId)
-        publicCloudDatabase.delete(withRecordID: recordId, completionHandler: { deletedRecordId, error in
+        publicCloudDatabase.delete(withRecordID: recordId) { deletedRecordId, error in
             DispatchQueue.main.async {
-                completion (deletedRecordId?.recordName, error as NSError?)
+                completion(deletedRecordId?.recordName, error as NSError?)
             }
-        })
+        }
     }
     
     //MARK: check that user is logged

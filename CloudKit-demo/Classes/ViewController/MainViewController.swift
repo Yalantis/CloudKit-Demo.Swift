@@ -114,6 +114,7 @@ extension MainViewController {
                 self.updateData()
             } else {
                 print("account unavailable")
+                self.settingsAlert()
             }
         }
     }
@@ -140,5 +141,24 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: kShowDetailSegueId, sender: self)
+    }
+}
+
+// MARK: - Alert
+
+private extension MainViewController {
+    
+    func settingsAlert() {
+        let alert = UIAlertController(title: "iCloud", message: "iCloud is unavailable, please login into your Apple id and try again!", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let settings = UIAlertAction(title: "Settings", style: .default) { _ in
+            guard let url = URL(string:"App-Prefs:root=General") else { return }
+            UIApplication.shared.openURL(url)
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(settings)
+        
+        present(alert, animated: true)
     }
 }
