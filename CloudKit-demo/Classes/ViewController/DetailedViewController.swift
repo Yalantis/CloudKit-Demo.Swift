@@ -26,7 +26,7 @@ class DetailedViewController: BaseViewController {
         super.viewDidLoad()
         
         setupView()
-        NotificationCenter.default.addObserver(self, selector:#selector(DetailedViewController.keyboardWillShow(_:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
     }
     
     // MARK: Private
@@ -47,9 +47,9 @@ class DetailedViewController: BaseViewController {
         self.navigationController!.navigationBar.isUserInteractionEnabled = !animate
     }
     
-    func keyboardWillShow(_ notification: Notification) {
+    @objc func keyboardWillShow(_ notification: Notification) {
         
-        let keyboardSize = ((notification as NSNotification).userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)!.cgRectValue
+        let keyboardSize = ((notification as NSNotification).userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)!.cgRectValue
         
         let keyboardHeight = keyboardSize.height
         let contentOffsetX = self.scrollView.contentOffset.x

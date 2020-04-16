@@ -47,16 +47,18 @@ fileprivate extension MainViewController {
     func updateData() {
         shouldAnimateIndicator(true)
         
-        CloudKitManager.fetchAllCities { records, error in
-            self.shouldAnimateIndicator(false)
+        CloudKitManager.fetchAllCities { [weak self] records, error in
+            guard let self = self else { return }
             
+            self.shouldAnimateIndicator(false)
             guard let cities = records else {
                 self.presentMessage(error!.localizedDescription)
+                
                 return
             }
-            
             guard !cities.isEmpty else {
                 self.presentMessage("Add City from the default list. Database is empty")
+                
                 return
             }
             
@@ -104,12 +106,15 @@ extension MainViewController {
     
     @IBAction func reloadCities() {
         shouldAnimateIndicator(true)
-        CloudKitManager.checkLoginStatus { isLogged in
+        CloudKitManager.checkLoginStatus { [weak self] isLogged in
+            guard let self = self else { return }
+            
             self.shouldAnimateIndicator(false)
             if isLogged {
                 self.updateData()
             } else {
                 print("account unavailable")
+                self.settingsAlert()
             }
         }
     }
@@ -136,5 +141,24 @@ extension MainViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         self.performSegue(withIdentifier: kShowDetailSegueId, sender: self)
+    }
+}
+
+// MARK: - Alert
+
+private extension MainViewController {
+    
+    func settingsAlert() {
+        let alert = UIAlertController(title: "iCloud", message: "iCloud is unavailable, please login into your Apple id and try again!", preferredStyle: .alert)
+        let cancel = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        let settings = UIAlertAction(title: "Settings", style: .default) { _ in
+            guard let url = URL(string:"App-Prefs:root=General") else { return }
+            UIApplication.shared.openURL(url)
+        }
+        
+        alert.addAction(cancel)
+        alert.addAction(settings)
+        
+        present(alert, animated: true)
     }
 }

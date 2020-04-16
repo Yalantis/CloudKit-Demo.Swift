@@ -55,14 +55,14 @@ final class CloudKitManager {
         
         publicCloudDatabase.save(record) { (savedRecord, error) in
             DispatchQueue.main.async {
-                completion(record, error as? NSError)
+                completion(record, error as NSError?)
             }
         }
     }
     
     //MARK: updating the record by recordId
     static func updateRecord(_ recordId: String, text: String, completion: @escaping (CKRecord?, NSError?) -> Void) {
-        let recordId = CKRecordID(recordName: recordId)
+        let recordId = CKRecord.ID(recordName: recordId)
         publicCloudDatabase.fetch(withRecordID: recordId) { updatedRecord, error in
             guard let record = updatedRecord else {
                 DispatchQueue.main.async {
@@ -74,7 +74,7 @@ final class CloudKitManager {
             record.setValue(text, forKey: cityText)
             self.publicCloudDatabase.save(record) { savedRecord, error in
                 DispatchQueue.main.async {
-                    completion(savedRecord, error as? NSError)
+                    completion(savedRecord, error as NSError?)
                 }
             }
         }
@@ -82,12 +82,12 @@ final class CloudKitManager {
     
     //MARK: remove the record
     static func removeRecord(_ recordId: String, completion: @escaping (String?, NSError?) -> Void) {
-        let recordId = CKRecordID(recordName: recordId)
-        publicCloudDatabase.delete(withRecordID: recordId, completionHandler: { deletedRecordId, error in
+        let recordId = CKRecord.ID(recordName: recordId)
+        publicCloudDatabase.delete(withRecordID: recordId) { deletedRecordId, error in
             DispatchQueue.main.async {
-                completion (deletedRecordId?.recordName, error as NSError?)
+                completion(deletedRecordId?.recordName, error as NSError?)
             }
-        })
+        }
     }
     
     //MARK: check that user is logged
@@ -96,11 +96,8 @@ final class CloudKitManager {
             if let error = error {
                 print(error.localizedDescription)
             }
-            switch accountStatus {
-            case .available:
-                handler(true)
-            default:
-                handler(false)
+            DispatchQueue.main.async {
+                handler(accountStatus == .available)
             }
         }
     }
